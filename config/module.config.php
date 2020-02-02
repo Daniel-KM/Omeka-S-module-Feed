@@ -2,6 +2,11 @@
 namespace Feed;
 
 return [
+    'form_elements' => [
+        'invokables' => [
+            Form\SiteSettingsFieldset::class => Form\SiteSettingsFieldset::class,
+        ],
+    ],
     'translator' => [
         'translation_file_patterns' => [
             [
@@ -13,5 +18,8 @@ return [
         ],
     ],
     'feed' => [
+        'site_settings' => [
+            'feed_urls' => [],
+        ],
     ],
 ];

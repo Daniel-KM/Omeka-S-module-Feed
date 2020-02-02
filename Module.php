@@ -8,6 +8,7 @@ if (!class_exists(\Generic\AbstractModule::class)) {
 }
 
 use Generic\AbstractModule;
+use Zend\EventManager\SharedEventManagerInterface;
 use Zend\ModuleManager\ModuleManager;
 
 /**
@@ -25,5 +26,14 @@ class Module extends AbstractModule
     public function init(ModuleManager $moduleManager)
     {
         require_once __DIR__ . '/vendor/autoload.php';
+    }
+
+    public function attachListeners(SharedEventManagerInterface $sharedEventManager)
+    {
+        $sharedEventManager->attach(
+            \Omeka\Form\SiteSettingsForm::class,
+            'form.add_elements',
+            [$this, 'handleSiteSettings']
+        );
     }
 }
