@@ -1,14 +1,14 @@
 Feed (module for Omeka S)
-========================
+=========================
 
-[Feed] is a module for [Omeka S] that allows to proved a rss feed to users from
-selected pages.
+[Feed] is a module for [Omeka S] that provides a RSS feed to users from selected
+pages and resources.
 
 
 Installation
 ------------
 
-This optional  module [Generic] may be installed first.
+This optional module [Generic] may be installed first.
 
 The module uses external libraries, so use the release zip to install it, or use
 and init the source.
@@ -33,8 +33,11 @@ composer install
 Usage
 -----
 
-Simply fill the form and the list of selected pages will be available as a rss
-feed.
+Simply fill the form to list the selected pages and resources in site settings,
+and they will be available as a rss feed at "https://example.org/s/my-site/feed"
+(or "https://example.org/feed" if you skip the main site).
+
+You can add "rss" or "atom" at the end of the url to force one type: "https://example.org/s/my-site/feed/atom".
 
 
 Warning
@@ -78,9 +81,9 @@ altered, and that no provisions are either added or removed herefrom.
 Copyright
 ---------
 
-* Copyright Daniel Berthereau, 2018-2019 (see [Daniel-KM] on GitHub)
+* Copyright Daniel Berthereau, 2019-2020 (see [Daniel-KM] on GitHub)
 
-First version of this module was built for Daniel Berthereau for [Fondation de la Maison de Salins].
+First version of this module was built by Daniel Berthereau for [Fondation Maison de Salins].
 
 
 [Omeka S]: https://omeka.org/s
@@ -93,5 +96,5 @@ First version of this module was built for Daniel Berthereau for [Fondation de l
 [GNU/GPL]: https://www.gnu.org/licenses/gpl-3.0.html
 [FSF]: https://www.fsf.org
 [OSI]: http://opensource.org
-[Fondation de la Maison de Salins]: https://www.collections.maison-salins.fr
+[Fondation Maison de Salins]: https://www.collections.maison-salins.fr
 [Daniel-KM]: https://github.com/Daniel-KM "Daniel Berthereau"
