@@ -8,6 +8,7 @@ if (!class_exists(\Generic\AbstractModule::class)) {
 }
 
 use Generic\AbstractModule;
+use Zend\ModuleManager\ModuleManager;
 
 /**
  * Feed
@@ -20,4 +21,9 @@ use Generic\AbstractModule;
 class Module extends AbstractModule
 {
     const NAMESPACE = __NAMESPACE__;
+
+    public function init(ModuleManager $moduleManager)
+    {
+        require_once __DIR__ . '/vendor/autoload.php';
+    }
 }
