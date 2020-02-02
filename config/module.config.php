@@ -7,6 +7,30 @@ return [
             Form\SiteSettingsFieldset::class => Form\SiteSettingsFieldset::class,
         ],
     ],
+    'controllers' => [
+        'invokables' => [
+            'Feed\Controller\Feed' => Controller\FeedController::class,
+        ],
+    ],
+    'router' => [
+        'routes' => [
+            'site' => [
+                'child_routes' => [
+                    'feed' => [
+                        'type' => \Zend\Router\Http\Literal::class,
+                        'options' => [
+                            'route' => '/feed',
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Feed\Controller',
+                                'controller' => 'Feed',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
     'translator' => [
         'translation_file_patterns' => [
             [

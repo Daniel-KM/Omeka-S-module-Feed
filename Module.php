@@ -10,6 +10,7 @@ if (!class_exists(\Generic\AbstractModule::class)) {
 use Generic\AbstractModule;
 use Zend\EventManager\Event;
 use Zend\EventManager\SharedEventManagerInterface;
+use Zend\Mvc\MvcEvent;
 use Zend\ModuleManager\ModuleManager;
 
 /**
@@ -27,6 +28,18 @@ class Module extends AbstractModule
     public function init(ModuleManager $moduleManager)
     {
         require_once __DIR__ . '/vendor/autoload.php';
+    }
+
+    public function onBootstrap(MvcEvent $event)
+    {
+        parent::onBootstrap($event);
+
+        $this->getServiceLocator()->get('Omeka\Acl')
+            ->allow(
+                null,
+                ['Feed\Controller\Feed']
+            )
+        ;
     }
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
