@@ -5,16 +5,27 @@ use Zend\Feed\Writer\Feed;
 use Omeka\Api\Exception\NotFoundException;
 use Omeka\Stdlib\Message;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Renderer\PhpRenderer;
 
 class FeedController extends AbstractActionController
 {
+    /**
+     * @var PhpRenderer
+     */
+    protected $viewRenderer;
+
     /**
      * @var string
      */
     protected $moduleVersion;
 
-    public function __construct($moduleVersion)
+    /**
+     * @param PhpRenderer $viewRenderer
+     * @param string $moduleVersion
+     */
+    public function __construct(PhpRenderer $viewRenderer, $moduleVersion)
     {
+        $this->viewRenderer = $viewRenderer;
         $this->moduleVersion = $moduleVersion;
     }
 
@@ -193,11 +204,25 @@ class FeedController extends AbstractActionController
 
             // Specific data of page.
             if ($page) {
-                // $content;
                 $entry->setTitle($page->title());
-                $content = '';
+                // The full text is not used, because text is not clean with
+                // some blocks, and it removes all tags.
+                $pageView = new \Zend\View\Model\ViewModel;
+                $pageView
+                    ->setVariable('site', $site)
+                    ->setVariable('page', $page)
+                    ->setVariable('displayNavigation', false)
+                    ->setTerminal(true)
+                    ->setTemplate('feed/page-show');
+                $contentView = clone $pageView;
+                $contentView
+                    ->setTemplate('feed/page-content')
+                    ->setVariable('pageViewModel', $pageView);
+                $pageView->addChild($contentView, 'content');
+                $content = $this->viewRenderer->render($contentView);
+
                 if ($content) {
-                    $content->setContent(strip_tags($content, $allowedTags));
+                    $entry->setContent(strip_tags(trim($content), $allowedTags));
                 }
                 if ($pageMetadata) {
                     $summary = $pageMetadata('summary', $page);

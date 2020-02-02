@@ -2,6 +2,11 @@
 namespace Feed;
 
 return [
+    'view_manager' => [
+        'template_path_stack' => [
+            dirname(__DIR__) . '/view',
+        ],
+    ],
     'form_elements' => [
         'invokables' => [
             Form\SiteSettingsFieldset::class => Form\SiteSettingsFieldset::class,
