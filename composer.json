@@ -1,0 +1,25 @@
+{
+    "name": "daniel-km/omeka-s-module-feed",
+    "description": "Provide a rss feed (module for Omeka S)",
+    "type": "library",
+    "license": "CECILL-2.1",
+    "authors": [
+        {
+            "name": "Daniel Berthereau",
+            "email": "Daniel.packagist@Berthereau.net"
+        }
+    ],
+    "homepage": "https://github.com/Daniel-KM/Omeka-S-module-Feed",
+    "support": {
+        "issues": "https://github.com/Daniel-KM/Omeka-S-module-Feed/issues",
+        "forum": "https://forum.omeka.org/"
+    },
+    "keywords": [
+        "Omeka S",
+        "module",
+        "feed",
+        "rss"
+    ],
+    "require": {
+    }
+}
