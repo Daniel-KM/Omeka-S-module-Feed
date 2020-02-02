@@ -17,9 +17,12 @@ return [
             'site' => [
                 'child_routes' => [
                     'feed' => [
-                        'type' => \Zend\Router\Http\Literal::class,
+                        'type' => \Zend\Router\Http\Segment::class,
                         'options' => [
-                            'route' => '/feed',
+                            'route' => '/feed[/:feed]',
+                            'constraints' => [
+                                'feed' => 'atom|rss',
+                            ],
                             'defaults' => [
                                 '__NAMESPACE__' => 'Feed\Controller',
                                 'controller' => 'Feed',

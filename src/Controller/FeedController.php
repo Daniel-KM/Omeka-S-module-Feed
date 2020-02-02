@@ -20,7 +20,7 @@ class FeedController extends AbstractActionController
 
     public function indexAction()
     {
-        $type = 'atom';
+        $type = $this->params()->fromRoute('feed', 'rss');
 
         /** @var \Omeka\Api\Representation\SiteRepresentation $site */
         $site = $this->currentSite();
