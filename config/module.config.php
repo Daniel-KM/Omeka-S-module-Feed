@@ -51,6 +51,7 @@ return [
     ],
     'feed' => [
         'site_settings' => [
+            'feed_logo' => null,
             'feed_entries' => [],
             'feed_entry_length' => 1000,
         ],

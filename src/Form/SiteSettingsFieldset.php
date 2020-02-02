@@ -1,6 +1,7 @@
 <?php
 namespace Feed\Form;
 
+use Omeka\Form\Element\Asset;
 use Zend\Form\Element;
 use Zend\Form\Fieldset;
 
@@ -14,6 +15,16 @@ class SiteSettingsFieldset extends Fieldset
     public function init()
     {
         $this
+            ->add([
+                'name' => 'feed_logo',
+                'type' => Asset::class,
+                'options' => [
+                    'label' => 'Image or logo for the channel', // @translate
+                ],
+                'attributes' => [
+                    'id' => 'feed_logo',
+                ],
+            ])
             ->add([
                 'name' => 'feed_entries',
                 'type' => Element\Textarea::class,

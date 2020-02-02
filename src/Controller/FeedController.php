@@ -67,6 +67,21 @@ class FeedController extends AbstractActionController
                 ->setLanguage($locale);
         }
 
+        /** @var \Omeka\Api\Representation\AssetRepresentation $asset */
+        $asset = $this->siteSettings()->get('feed_logo');
+        if ($asset) {
+            $image = [
+                'uri' => $asset->assetUrl(),
+                'link' => $site->siteUrl(null, true),
+                'title' => $this->translate('Logo'),
+                // Optional for "rss".
+                // 'description' => '',
+                // 'height' => '',
+                // 'width' => '',
+            ];
+            $feed->setImage($image);
+        }
+
         $this->appendEntries($feed);
 
         $content = $feed->export($type);
