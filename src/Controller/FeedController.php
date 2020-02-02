@@ -32,13 +32,18 @@ class FeedController extends AbstractActionController
             ->setType($type)
             ->setTitle($site->title())
             ->setLink($site->siteUrl($site->slug(), true))
-            ->setDescription($site->summary())
             // Use rdf because Omeka is Semantic, but "atom" is required when
             // the type is "atom".
             ->setFeedLink($urlHelper('site/feed', ['site-slug' => $site->slug()], ['force_canonical' => true]), $type === 'atom' ? 'atom' : 'rdf')
             ->setGenerator('Omeka S module Feed', $this->moduleVersion, 'https://github.com/Daniel-KM/Omeka-S-module-Feed')
             ->setDateModified(time())
         ;
+
+        $description = $site->summary();
+        if ($description) {
+            $feed
+                ->setDescription($description);
+        }
 
         $locale = $siteSettings->get('locale');
         if ($locale) {
