@@ -11,7 +11,6 @@ use Generic\AbstractModule;
 use Zend\EventManager\Event;
 use Zend\EventManager\SharedEventManagerInterface;
 use Zend\Mvc\MvcEvent;
-use Zend\ModuleManager\ModuleManager;
 
 /**
  * Feed
@@ -24,11 +23,6 @@ use Zend\ModuleManager\ModuleManager;
 class Module extends AbstractModule
 {
     const NAMESPACE = __NAMESPACE__;
-
-    public function init(ModuleManager $moduleManager)
-    {
-        require_once __DIR__ . '/vendor/autoload.php';
-    }
 
     public function onBootstrap(MvcEvent $event)
     {

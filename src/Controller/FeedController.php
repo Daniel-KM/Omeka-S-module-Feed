@@ -1,7 +1,7 @@
 <?php
 namespace Feed\Controller;
 
-use Laminas\Feed\Writer\Feed;
+use Zend\Feed\Writer\Feed;
 use Omeka\Api\Exception\NotFoundException;
 use Omeka\Stdlib\Message;
 use Zend\Mvc\Controller\AbstractActionController;
