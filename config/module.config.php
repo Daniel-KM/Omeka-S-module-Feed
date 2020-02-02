@@ -19,7 +19,7 @@ return [
     ],
     'feed' => [
         'site_settings' => [
-            'feed_urls' => [],
+            'feed_entries' => [],
         ],
     ],
 ];

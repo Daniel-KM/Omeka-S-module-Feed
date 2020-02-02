@@ -8,6 +8,7 @@ if (!class_exists(\Generic\AbstractModule::class)) {
 }
 
 use Generic\AbstractModule;
+use Zend\EventManager\Event;
 use Zend\EventManager\SharedEventManagerInterface;
 use Zend\ModuleManager\ModuleManager;
 
@@ -35,5 +36,47 @@ class Module extends AbstractModule
             'form.add_elements',
             [$this, 'handleSiteSettings']
         );
+        $sharedEventManager->attach(
+            \Omeka\Form\SiteSettingsForm::class,
+            'form.add_input_filters',
+            [$this, 'handleSiteSettingsFilters']
+        );
+    }
+
+    public function handleSiteSettings(Event $event)
+    {
+        parent::handleSiteSettings($event);
+
+        $services = $this->getServiceLocator();
+        $settings = $services->get('Omeka\Settings\Site');
+
+        $fieldset = $event
+            ->getTarget()
+            ->get('feed');
+
+        $entries = $settings->get('feed_entries') ?: [];
+        $value = is_array($entries) ? implode("\n", $entries) : $entries;
+        $fieldset
+            ->get('feed_entries')
+            ->setValue($value);
+    }
+
+    public function handleSiteSettingsFilters(Event $event)
+    {
+        $event->getParam('inputFilter')
+            ->get('feed')
+            ->add([
+                'name' => 'feed_entries',
+                'required' => false,
+                'filters' => [
+                    [
+                        'name' => \Zend\Filter\Callback::class,
+                        'options' => [
+                            'callback' => [$this, 'stringToList'],
+                        ],
+                    ],
+                ],
+            ])
+        ;
     }
 }
