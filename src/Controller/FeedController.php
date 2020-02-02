@@ -55,6 +55,11 @@ class FeedController extends AbstractActionController
             $feed
                 ->setDescription($description);
         }
+        // The type "rss" requires a description.
+        elseif ($type === 'rss') {
+            $feed
+                ->setDescription($site->title());
+        }
 
         $locale = $siteSettings->get('locale');
         if ($locale) {
