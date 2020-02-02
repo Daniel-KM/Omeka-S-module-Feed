@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-03 00:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Controller/FeedController.php:76
+msgid "Logo"
+msgstr ""
+
+#: src/Generic/AbstractModule.php:543
+#, php-format
+msgid "This module requires the module \"%s\"."
+msgstr ""
+
+#: src/Generic/AbstractModule.php:563
+#, php-format
+msgid "This module requires modules \"%s\"."
+msgstr ""
+
+#: src/Generic/AbstractModule.php:631
+#, php-format
+msgid ""
+"The module \"%s\" was automatically deactivated because the dependencies are "
+"unavailable."
+msgstr ""
+
+#: src/Form/SiteSettingsFieldset.php:13
+msgid "Feed (rss/atom)"
+msgstr ""
+
+#: src/Form/SiteSettingsFieldset.php:22
+msgid "Image or logo for the channel"
+msgstr ""
+
+#: src/Form/SiteSettingsFieldset.php:32
+msgid "Feed entries"
+msgstr ""
+
+#: src/Form/SiteSettingsFieldset.php:48
+msgid "Max entry length"
+msgstr ""
+
+#: src/Form/SiteSettingsFieldset.php:49
+msgid "0 means all text for pages and resource descriptions."
+msgstr ""
+
+#: src/Controller/FeedController.php:115
+#, php-format
+msgid ""
+"The page \"%s\" is no longer available and cannot be listed in rss feed."
+msgstr ""

@@ -1,0 +1,71 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Daniel Berthereau <Daniel.github@Berthereau.net>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-03 00:00+0100\n"
+"PO-Revision-Date: 2020-02-03 10:56+0100\n"
+"Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
+"Language-Team: French <kde-i18n-doc@kde.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.2.4\n"
+
+#: src/Controller/FeedController.php:76
+msgid "Logo"
+msgstr "Logo"
+
+#: src/Generic/AbstractModule.php:543
+#, php-format
+msgid "This module requires the module \"%s\"."
+msgstr "Ce module requiert le module \"%s\"."
+
+#: src/Generic/AbstractModule.php:563
+#, php-format
+msgid "This module requires modules \"%s\"."
+msgstr "Ce module requiert les modules \"%s\"."
+
+#: src/Generic/AbstractModule.php:631
+#, php-format
+msgid ""
+"The module \"%s\" was automatically deactivated because the dependencies are "
+"unavailable."
+msgstr ""
+"Le module %s\" a été automatiquement désactivé car ses dépendances ne sont "
+"plus disponibles."
+
+#: src/Form/SiteSettingsFieldset.php:13
+msgid "Feed (rss/atom)"
+msgstr "Feed (rss/atom)"
+
+#: src/Form/SiteSettingsFieldset.php:22
+msgid "Image or logo for the channel"
+msgstr "Image ou logo pour le flux"
+
+#: src/Form/SiteSettingsFieldset.php:32
+msgid "Feed entries"
+msgstr "Entrées du flux"
+
+#: src/Form/SiteSettingsFieldset.php:48
+msgid "Max entry length"
+msgstr "Taille maximale d’une entrée"
+
+#: src/Form/SiteSettingsFieldset.php:49
+msgid "0 means all text for pages and resource descriptions."
+msgstr ""
+"\"0\" signifie le texte entier pour les pages et les descriptions des "
+"ressources."
+
+#: src/Controller/FeedController.php:115
+#, php-format
+msgid ""
+"The page \"%s\" is no longer available and cannot be listed in rss feed."
+msgstr ""
+"La page \"%s\" n’est plus disponible et ne peut plus être listée dans le "
+"flux rss."
