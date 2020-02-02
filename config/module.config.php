@@ -8,8 +8,8 @@ return [
         ],
     ],
     'controllers' => [
-        'invokables' => [
-            'Feed\Controller\Feed' => Controller\FeedController::class,
+        'factories' => [
+            'Feed\Controller\Feed' => Service\Controller\FeedControllerFactory::class,
         ],
     ],
     'router' => [

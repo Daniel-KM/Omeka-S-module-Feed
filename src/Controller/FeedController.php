@@ -8,6 +8,16 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 class FeedController extends AbstractActionController
 {
+    /**
+     * @var string
+     */
+    protected $moduleVersion;
+
+    public function __construct($moduleVersion)
+    {
+        $this->moduleVersion = $moduleVersion;
+    }
+
     public function indexAction()
     {
         $type = 'atom';
@@ -26,7 +36,7 @@ class FeedController extends AbstractActionController
             // Use rdf because Omeka is Semantic, but "atom" is required when
             // the type is "atom".
             ->setFeedLink($urlHelper('site/feed', ['site-slug' => $site->slug()], ['force_canonical' => true]), $type === 'atom' ? 'atom' : 'rdf')
-            ->setGenerator('Omeka S module Feed', null, 'https://github.com/Daniel-KM/Omeka-S-module-Feed')
+            ->setGenerator('Omeka S module Feed', $this->moduleVersion, 'https://github.com/Daniel-KM/Omeka-S-module-Feed')
             ->setDateModified(time())
         ;
 
