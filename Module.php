@@ -84,6 +84,10 @@ class Module extends AbstractModule
                     ],
                 ],
             ])
+            ->add([
+                'name' => 'feed_entry_length',
+                'required' => false,
+            ])
         ;
     }
 }

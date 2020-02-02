@@ -30,6 +30,19 @@ item/4
 page/article-two',
                 ],
             ])
+            ->add([
+                'name' => 'feed_entry_length',
+                'type' => Element\Number::class,
+                'options' => [
+                    'label' => 'Max entry length', // @translate
+                    'info' => '0 means all text for pages and resource descriptions.' // @translate
+                ],
+                'attributes' => [
+                    'id' => 'feed_entry_length',
+                    'min' => 0,
+                    'required' => false,
+                ],
+            ])
         ;
     }
 }

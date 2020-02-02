@@ -52,6 +52,7 @@ return [
     'feed' => [
         'site_settings' => [
             'feed_entries' => [],
+            'feed_entry_length' => 1000,
         ],
     ],
 ];

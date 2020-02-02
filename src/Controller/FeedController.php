@@ -114,6 +114,8 @@ class FeedController extends AbstractActionController
         ];
         $allowedTags = '<p><a><i><b><em><strong><br>';
 
+        $maxLength = $this->siteSettings()->get('feed_entry_length', 0);
+
         /** @var \Omeka\Api\Representation\SiteRepresentation $currentSite */
         $currentSite = $this->currentSite();
         $currentSiteSlug = $currentSite->slug();
@@ -222,7 +224,13 @@ class FeedController extends AbstractActionController
                 $content = $this->viewRenderer->render($contentView);
 
                 if ($content) {
-                    $entry->setContent(strip_tags(trim($content), $allowedTags));
+                    if ($maxLength) {
+                        $clean = trim(str_replace('  ', ' ', strip_tags($content)));
+                        $content = mb_substr($clean, 0, $maxLength) . '…';
+                    } else {
+                        $content = trim(strip_tags($content, $allowedTags));
+                    }
+                    $entry->setContent($content);
                 }
                 if ($pageMetadata) {
                     $summary = $pageMetadata('summary', $page);
