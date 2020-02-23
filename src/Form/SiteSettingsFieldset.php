@@ -54,6 +54,21 @@ page/article-two',
                     'required' => false,
                 ],
             ])
+            ->add([
+                'name' => 'feed_media_type',
+                'type' => Element\Radio::class,
+                'options' => [
+                    'label' => 'Media type', // @translate
+                    'value_options' => [
+                        'xml' => 'application/xml (most compatible)', // @translate
+                        'standard' => 'application/atom+xml and application/rss+xml (standard)', // @translate
+                    ],
+                ],
+                'attributes' => [
+                    'id' => 'feed_media_type',
+                    'value' => 'xml',
+                ],
+            ])
         ;
     }
 }

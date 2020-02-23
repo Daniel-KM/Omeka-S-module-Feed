@@ -89,14 +89,21 @@ class FeedController extends AbstractActionController
         $response = $this->getResponse();
         $response->setContent($content);
         /** @var \Zend\Http\Headers $headers */
-        $response->getHeaders()
-            // TODO Manage content type requests (atom/rss).
-            // Note: normally, application/rss+xml is the good one, but text/xml
-            // may be more compatible.
-            // ->addHeaderLine('Content-type: ' . 'text/xml')
-            ->addHeaderLine('Content-type: ' . 'application/' . $type . '+xml')
+        $headers = $response->getHeaders();
+        $headers
             ->addHeaderLine('Content-length: ' . strlen($content))
             ->addHeaderLine('Pragma: public');
+        // TODO Manage content type requests (atom/rss).
+        // Note: normally, application/rss+xml is the standard one, but text/xml
+        // may be more compatible.
+        if ($this->siteSettings()->get('feed_media_type', 'xml') === 'xml') {
+            $headers
+                ->addHeaderLine('Content-type: ' . 'text/xml');
+        } else {
+            $headers
+                ->addHeaderLine('Content-type: ' . 'application/' . $type . '+xml');
+        }
+
         return $response;
     }
 
