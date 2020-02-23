@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 00:00+0100\n"
+"POT-Creation-Date: 2020-02-24 00:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,17 +21,17 @@ msgstr ""
 msgid "Logo"
 msgstr ""
 
-#: src/Generic/AbstractModule.php:543
+#: src/Generic/AbstractModule.php:542
 #, php-format
 msgid "This module requires the module \"%s\"."
 msgstr ""
 
-#: src/Generic/AbstractModule.php:563
+#: src/Generic/AbstractModule.php:562
 #, php-format
 msgid "This module requires modules \"%s\"."
 msgstr ""
 
-#: src/Generic/AbstractModule.php:631
+#: src/Generic/AbstractModule.php:630
 #, php-format
 msgid ""
 "The module \"%s\" was automatically deactivated because the dependencies are "
@@ -58,7 +58,19 @@ msgstr ""
 msgid "0 means all text for pages and resource descriptions."
 msgstr ""
 
-#: src/Controller/FeedController.php:115
+#: src/Form/SiteSettingsFieldset.php:61
+msgid "Media type"
+msgstr ""
+
+#: src/Form/SiteSettingsFieldset.php:63
+msgid "application/xml (most compatible)"
+msgstr ""
+
+#: src/Form/SiteSettingsFieldset.php:64
+msgid "application/atom+xml and application/rss+xml (standard)"
+msgstr ""
+
+#: src/Controller/FeedController.php:121
 #, php-format
 msgid ""
 "The page \"%s\" is no longer available and cannot be listed in rss feed."

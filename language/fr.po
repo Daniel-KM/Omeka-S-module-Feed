@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 00:00+0100\n"
-"PO-Revision-Date: 2020-02-03 10:56+0100\n"
+"POT-Creation-Date: 2020-02-24 00:00+0100\n"
+"PO-Revision-Date: 2020-02-24 00:00+0100\n"
 "Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -21,17 +21,17 @@ msgstr ""
 msgid "Logo"
 msgstr "Logo"
 
-#: src/Generic/AbstractModule.php:543
+#: src/Generic/AbstractModule.php:542
 #, php-format
 msgid "This module requires the module \"%s\"."
 msgstr "Ce module requiert le module \"%s\"."
 
-#: src/Generic/AbstractModule.php:563
+#: src/Generic/AbstractModule.php:562
 #, php-format
 msgid "This module requires modules \"%s\"."
 msgstr "Ce module requiert les modules \"%s\"."
 
-#: src/Generic/AbstractModule.php:631
+#: src/Generic/AbstractModule.php:630
 #, php-format
 msgid ""
 "The module \"%s\" was automatically deactivated because the dependencies are "
@@ -62,7 +62,19 @@ msgstr ""
 "\"0\" signifie le texte entier pour les pages et les descriptions des "
 "ressources."
 
-#: src/Controller/FeedController.php:115
+#: src/Form/SiteSettingsFieldset.php:61
+msgid "Media type"
+msgstr "Média type"
+
+#: src/Form/SiteSettingsFieldset.php:63
+msgid "application/xml (most compatible)"
+msgstr "application/xml (plus compatible)"
+
+#: src/Form/SiteSettingsFieldset.php:64
+msgid "application/atom+xml and application/rss+xml (standard)"
+msgstr "application/atom+xml et application/rss+xml (standard)"
+
+#: src/Controller/FeedController.php:121
 #, php-format
 msgid ""
 "The page \"%s\" is no longer available and cannot be listed in rss feed."
