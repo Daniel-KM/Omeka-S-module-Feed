@@ -8,7 +8,7 @@ pages and resources.
 Installation
 ------------
 
-This optional module [Generic] may be installed first.
+The optional module [Generic] may be installed first.
 
 The module uses external libraries, so use the release zip to install it, or use
 and init the source.
@@ -38,6 +38,11 @@ and they will be available as a rss feed at "https://example.org/s/my-site/feed"
 (or "https://example.org/feed" if you skip the main site).
 
 You can add "rss" or "atom" at the end of the url to force one type: "https://example.org/s/my-site/feed/atom".
+Note: atom is currently not working with diacritics and other html entities.
+
+Options available in the site settings are:
+- Media type, that can be the standard one or the generic xml one.
+- Content disposition, that can be Attachment, Inline, or Undefined.
 
 
 Warning
