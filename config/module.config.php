@@ -32,6 +32,7 @@ return [
                                 '__NAMESPACE__' => 'Feed\Controller',
                                 'controller' => 'Feed',
                                 'action' => 'index',
+                                'feed' => 'rss',
                             ],
                         ],
                     ],
