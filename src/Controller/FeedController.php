@@ -88,6 +88,7 @@ class FeedController extends AbstractActionController
 
         $response = $this->getResponse();
         $response->setContent($content);
+
         /** @var \Zend\Http\Headers $headers */
         $headers = $response->getHeaders();
         $headers
@@ -102,6 +103,22 @@ class FeedController extends AbstractActionController
         } else {
             $headers
                 ->addHeaderLine('Content-type: ' . 'application/' . $type . '+xml; charset=UTF-8');
+        }
+
+        $contentDisposition = $this->siteSettings()->get('feed_disposition', 'attachment');
+        switch ($contentDisposition) {
+            case 'undefined':
+                break;
+            case 'inline':
+                $headers
+                    ->addHeaderLine('Content-Disposition', 'inline');
+                break;
+            case 'attachment':
+            default:
+                $filename = 'feed-' . (new \DateTime('now'))->format('Y-m-d') . '.' . $type . '.xml';
+                $headers
+                    ->addHeaderLine('Content-Disposition', $contentDisposition . '; filename="' . $filename . '"');
+                break;
         }
 
         return $response;

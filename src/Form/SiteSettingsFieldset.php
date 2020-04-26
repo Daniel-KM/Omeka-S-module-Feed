@@ -66,7 +66,21 @@ page/article-two',
                 ],
                 'attributes' => [
                     'id' => 'feed_media_type',
-                    'value' => 'xml',
+                ],
+            ])
+            ->add([
+                'name' => 'feed_disposition',
+                'type' => Element\Radio::class,
+                'options' => [
+                    'label' => 'Content disposition', // @translate
+                    'value_options' => [
+                        'attachment' => 'Attachment to download', // @translate
+                        'inline' => 'Inline to display', // @translate
+                        'undefined' => 'Undefined', // @translate
+                    ],
+                ],
+                'attributes' => [
+                    'id' => 'feed_disposition',
                 ],
             ])
         ;

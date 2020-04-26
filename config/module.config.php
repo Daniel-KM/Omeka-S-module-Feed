@@ -56,6 +56,7 @@ return [
             'feed_entries' => [],
             'feed_entry_length' => 1000,
             'feed_media_type' => 'standard',
+            'feed_disposition' => 'attachment',
         ],
     ],
 ];
