@@ -134,7 +134,7 @@ class FeedController extends AbstractActionController
         $api = $this->api();
         $pageMetadata = $this->viewHelpers()->has('pageMetadata') ? $this->viewHelpers()->get('pageMetadata') : null;
 
-        $logUnavailableEntry = function($url) {
+        $logUnavailableEntry = function ($url) {
             $this->logger()->warn(new Message(
                 'The page "%s" is no longer available and cannot be listed in rss feed.', // @translate
                 $url
@@ -232,7 +232,7 @@ class FeedController extends AbstractActionController
             if ($page) {
                 $record = $page;
                 $resourceName = 'site_pages';
-            } elseif( $resource) {
+            } elseif ($resource) {
                 $record = $resource;
                 $resourceName = $record->resourceName();
             } else {

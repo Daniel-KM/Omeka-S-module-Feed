@@ -46,7 +46,7 @@ page/article-two',
                 'type' => Element\Number::class,
                 'options' => [
                     'label' => 'Max entry length', // @translate
-                    'info' => '0 means all text for pages and resource descriptions.' // @translate
+                    'info' => '0 means all text for pages and resource descriptions.', // @translate
                 ],
                 'attributes' => [
                     'id' => 'feed_entry_length',
