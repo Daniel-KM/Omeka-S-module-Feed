@@ -98,10 +98,10 @@ class FeedController extends AbstractActionController
         // may be more compatible.
         if ($this->siteSettings()->get('feed_media_type', 'standard') === 'xml') {
             $headers
-                ->addHeaderLine('Content-type: ' . 'text/xml');
+                ->addHeaderLine('Content-type: ' . 'text/xml; charset=UTF-8');
         } else {
             $headers
-                ->addHeaderLine('Content-type: ' . 'application/' . $type . '+xml');
+                ->addHeaderLine('Content-type: ' . 'application/' . $type . '+xml; charset=UTF-8');
         }
 
         return $response;
