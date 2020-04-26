@@ -60,8 +60,8 @@ page/article-two',
                 'options' => [
                     'label' => 'Media type', // @translate
                     'value_options' => [
-                        'xml' => 'application/xml (most compatible)', // @translate
                         'standard' => 'application/atom+xml and application/rss+xml (standard)', // @translate
+                        'xml' => 'application/xml (most compatible)', // @translate
                     ],
                 ],
                 'attributes' => [

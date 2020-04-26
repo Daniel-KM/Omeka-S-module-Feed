@@ -54,7 +54,7 @@ return [
             'feed_logo' => null,
             'feed_entries' => [],
             'feed_entry_length' => 1000,
-            'feed_media_type' => 'xml',
+            'feed_media_type' => 'standard',
         ],
     ],
 ];

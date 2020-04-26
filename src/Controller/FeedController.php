@@ -96,7 +96,7 @@ class FeedController extends AbstractActionController
         // TODO Manage content type requests (atom/rss).
         // Note: normally, application/rss+xml is the standard one, but text/xml
         // may be more compatible.
-        if ($this->siteSettings()->get('feed_media_type', 'xml') === 'xml') {
+        if ($this->siteSettings()->get('feed_media_type', 'standard') === 'xml') {
             $headers
                 ->addHeaderLine('Content-type: ' . 'text/xml');
         } else {
