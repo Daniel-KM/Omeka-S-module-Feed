@@ -28,8 +28,8 @@ not contain the dependency), and uncompress it in the `modules` directory.
 If the module was installed from the source, rename the name of the folder of
 the module to `Feed`, go to the root of the module, and run:
 
-```
-composer install
+```sh
+composer install --no-dev
 ```
 
 
@@ -60,7 +60,7 @@ your archives regularly so you can roll back if needed.
 Troubleshooting
 ---------------
 
-See online issues on the [module issues] page on GitHub.
+See online issues on the [module issues] page on GitLab.
 
 
 License
@@ -89,21 +89,21 @@ altered, and that no provisions are either added or removed herefrom.
 Copyright
 ---------
 
-* Copyright Daniel Berthereau, 2019-2020 (see [Daniel-KM] on GitHub)
+* Copyright Daniel Berthereau, 2019-2020 (see [Daniel-KM] on GitLab)
 
 First version of this module was built by Daniel Berthereau for [Fondation Maison de Salins].
 
 
 [Omeka S]: https://omeka.org/s
-[Feed]: https://github.com/Daniel-KM/Omeka-S-module-Feed
-[Generic]: https://github.com/Daniel-KM/Omeka-S-module-Generic
-[Feed.zip]: https://github.com/Daniel-KM/Omeka-S-module-Feed/releases
+[Feed]: https://gitlab.com/Daniel-KM/Omeka-S-module-Feed
+[Generic]: https://gitlab.com/Daniel-KM/Omeka-S-module-Generic
+[Feed.zip]: https://gitlab.com/Daniel-KM/Omeka-S-module-Feed/-/releases
 [Installing a module]: http://dev.omeka.org/docs/s/user-manual/modules/#installing-modules
-[module issues]: https://github.com/Daniel-KM/Omeka-S-module-Feed/issues
+[module issues]: https://gitlab.com/Daniel-KM/Omeka-S-module-Feed/-/issues
 [CeCILL v2.1]: https://www.cecill.info/licences/Licence_CeCILL_V2.1-en.html
 [GNU/GPL]: https://www.gnu.org/licenses/gpl-3.0.html
 [FSF]: https://www.fsf.org
 [OSI]: http://opensource.org
 [Fondation Maison de Salins]: https://www.collections.maison-salins.fr
 [GitLab]: https://gitlab.com/Daniel-KM
-[Daniel-KM]: https://github.com/Daniel-KM "Daniel Berthereau"
+[Daniel-KM]: https://gitlab.com/Daniel-KM "Daniel Berthereau"
