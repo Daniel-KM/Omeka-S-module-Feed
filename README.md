@@ -1,6 +1,9 @@
 Feed (module for Omeka S)
 =========================
 
+> __New versions of this module and support for Omeka S version 3.0 and above
+> are available on [GitLab], which seems to respect users and privacy better.__
+
 [Feed] is a module for [Omeka S] that provides a RSS feed to users from selected
 pages and resources.
 
@@ -102,4 +105,5 @@ First version of this module was built by Daniel Berthereau for [Fondation Maiso
 [FSF]: https://www.fsf.org
 [OSI]: http://opensource.org
 [Fondation Maison de Salins]: https://www.collections.maison-salins.fr
+[GitLab]: https://gitlab.com/Daniel-KM
 [Daniel-KM]: https://github.com/Daniel-KM "Daniel Berthereau"
