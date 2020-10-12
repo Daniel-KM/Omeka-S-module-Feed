@@ -22,7 +22,7 @@ return [
             'site' => [
                 'child_routes' => [
                     'feed' => [
-                        'type' => \Zend\Router\Http\Segment::class,
+                        'type' => \Laminas\Router\Http\Segment::class,
                         'options' => [
                             'route' => '/feed[/:feed]',
                             'constraints' => [

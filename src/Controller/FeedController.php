@@ -1,11 +1,11 @@
 <?php
 namespace Feed\Controller;
 
-use Zend\Feed\Writer\Feed;
+use Laminas\Feed\Writer\Feed;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Renderer\PhpRenderer;
 use Omeka\Api\Exception\NotFoundException;
 use Omeka\Stdlib\Message;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Renderer\PhpRenderer;
 
 class FeedController extends AbstractActionController
 {
@@ -89,7 +89,7 @@ class FeedController extends AbstractActionController
         $response = $this->getResponse();
         $response->setContent($content);
 
-        /** @var \Zend\Http\Headers $headers */
+        /** @var \Laminas\Http\Headers $headers */
         $headers = $response->getHeaders();
         $headers
             ->addHeaderLine('Content-length: ' . strlen($content))
@@ -228,8 +228,8 @@ class FeedController extends AbstractActionController
                 }
             }
 
-            /** @var \Omeka\Api\Representation\AbstractEntityRepresentation $record */
             if ($page) {
+                /** @var \Omeka\Api\Representation\AbstractEntityRepresentation $record */
                 $record = $page;
                 $resourceName = 'site_pages';
             } elseif ($resource) {
@@ -253,7 +253,7 @@ class FeedController extends AbstractActionController
                 $entry->setTitle($page->title());
                 // The full text is not used, because text is not clean with
                 // some blocks, and it removes all tags.
-                $pageView = new \Zend\View\Model\ViewModel;
+                $pageView = new \Laminas\View\Model\ViewModel;
                 $pageView
                     ->setVariable('site', $site)
                     ->setVariable('page', $page)

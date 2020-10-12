@@ -1,9 +1,9 @@
 <?php
 namespace Feed\Form;
 
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
 use Omeka\Form\Element\Asset;
-use Zend\Form\Element;
-use Zend\Form\Fieldset;
 
 class SiteSettingsFieldset extends Fieldset
 {

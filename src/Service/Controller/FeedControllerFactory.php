@@ -4,7 +4,7 @@ namespace Feed\Service\Controller;
 
 use Feed\Controller\FeedController;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class FeedControllerFactory implements FactoryInterface
 {
