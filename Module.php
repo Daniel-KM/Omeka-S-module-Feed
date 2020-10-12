@@ -8,7 +8,6 @@ if (!class_exists(\Generic\AbstractModule::class)) {
 }
 
 use Generic\AbstractModule;
-use Laminas\EventManager\Event;
 use Laminas\EventManager\SharedEventManagerInterface;
 use Laminas\Mvc\MvcEvent;
 
@@ -43,51 +42,5 @@ class Module extends AbstractModule
             'form.add_elements',
             [$this, 'handleSiteSettings']
         );
-        $sharedEventManager->attach(
-            \Omeka\Form\SiteSettingsForm::class,
-            'form.add_input_filters',
-            [$this, 'handleSiteSettingsFilters']
-        );
-    }
-
-    public function handleSiteSettings(Event $event): void
-    {
-        parent::handleSiteSettings($event);
-
-        $services = $this->getServiceLocator();
-        $settings = $services->get('Omeka\Settings\Site');
-
-        $fieldset = $event
-            ->getTarget()
-            ->get('feed');
-
-        $entries = $settings->get('feed_entries') ?: [];
-        $value = is_array($entries) ? implode("\n", $entries) : $entries;
-        $fieldset
-            ->get('feed_entries')
-            ->setValue($value);
-    }
-
-    public function handleSiteSettingsFilters(Event $event): void
-    {
-        $event->getParam('inputFilter')
-            ->get('feed')
-            ->add([
-                'name' => 'feed_entries',
-                'required' => false,
-                'filters' => [
-                    [
-                        'name' => \Laminas\Filter\Callback::class,
-                        'options' => [
-                            'callback' => [$this, 'stringToList'],
-                        ],
-                    ],
-                ],
-            ])
-            ->add([
-                'name' => 'feed_entry_length',
-                'required' => false,
-            ])
-        ;
     }
 }

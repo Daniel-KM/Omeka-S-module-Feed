@@ -3,6 +3,7 @@ namespace Feed\Form;
 
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
+use Omeka\Form\Element\ArrayTextarea;
 use Omeka\Form\Element\Asset;
 
 class SiteSettingsFieldset extends Fieldset
@@ -27,9 +28,10 @@ class SiteSettingsFieldset extends Fieldset
             ])
             ->add([
                 'name' => 'feed_entries',
-                'type' => Element\Textarea::class,
+                'type' => ArrayTextarea::class,
                 'options' => [
                     'label' => 'Feed entries', // @translate
+                    'as_key_value' => false,
                 ],
                 'attributes' => [
                     'id' => 'feed_entries',
@@ -66,6 +68,7 @@ page/article-two',
                 ],
                 'attributes' => [
                     'id' => 'feed_media_type',
+                    'value' => 'standard',
                 ],
             ])
             ->add([
@@ -81,6 +84,7 @@ page/article-two',
                 ],
                 'attributes' => [
                     'id' => 'feed_disposition',
+                    'value' => 'attachment',
                 ],
             ])
         ;
