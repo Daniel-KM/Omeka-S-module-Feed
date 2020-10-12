@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Feed\Form;
 
 use Laminas\Form\Element;
@@ -12,7 +12,7 @@ class SiteSettingsFieldset extends Fieldset
      */
     protected $label = 'Feed (rss/atom)'; // @translate
 
-    public function init()
+    public function init(): void
     {
         $this
             ->add([

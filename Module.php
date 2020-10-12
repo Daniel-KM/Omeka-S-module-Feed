@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Feed;
 
 if (!class_exists(\Generic\AbstractModule::class)) {
@@ -24,7 +24,7 @@ class Module extends AbstractModule
 {
     const NAMESPACE = __NAMESPACE__;
 
-    public function onBootstrap(MvcEvent $event)
+    public function onBootstrap(MvcEvent $event): void
     {
         parent::onBootstrap($event);
 
@@ -36,7 +36,7 @@ class Module extends AbstractModule
         ;
     }
 
-    public function attachListeners(SharedEventManagerInterface $sharedEventManager)
+    public function attachListeners(SharedEventManagerInterface $sharedEventManager): void
     {
         $sharedEventManager->attach(
             \Omeka\Form\SiteSettingsForm::class,
@@ -50,7 +50,7 @@ class Module extends AbstractModule
         );
     }
 
-    public function handleSiteSettings(Event $event)
+    public function handleSiteSettings(Event $event): void
     {
         parent::handleSiteSettings($event);
 
@@ -68,7 +68,7 @@ class Module extends AbstractModule
             ->setValue($value);
     }
 
-    public function handleSiteSettingsFilters(Event $event)
+    public function handleSiteSettingsFilters(Event $event): void
     {
         $event->getParam('inputFilter')
             ->get('feed')

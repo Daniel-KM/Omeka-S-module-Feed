@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Feed\Controller;
 
 use Laminas\Feed\Writer\Feed;
@@ -129,12 +129,12 @@ class FeedController extends AbstractActionController
      *
      * @param Feed $feed
      */
-    protected function appendEntries(Feed $feed)
+    protected function appendEntries(Feed $feed): void
     {
         $api = $this->api();
         $pageMetadata = $this->viewHelpers()->has('pageMetadata') ? $this->viewHelpers()->get('pageMetadata') : null;
 
-        $logUnavailableEntry = function ($url) {
+        $logUnavailableEntry = function ($url): void {
             $this->logger()->warn(new Message(
                 'The page "%s" is no longer available and cannot be listed in rss feed.', // @translate
                 $url
