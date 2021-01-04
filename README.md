@@ -2,7 +2,8 @@ Feed (module for Omeka S)
 =========================
 
 > __New versions of this module and support for Omeka S version 3.0 and above
-> are available on [GitLab], which seems to respect users and privacy better.__
+> are available on [GitLab], which seems to respect users and privacy better
+> than the previous repository.__
 
 [Feed] is a module for [Omeka S] that provides a RSS feed to users from selected
 pages and resources.
@@ -89,7 +90,7 @@ altered, and that no provisions are either added or removed herefrom.
 Copyright
 ---------
 
-* Copyright Daniel Berthereau, 2019-2020 (see [Daniel-KM] on GitLab)
+* Copyright Daniel Berthereau, 2019-2021 (see [Daniel-KM] on GitLab)
 
 First version of this module was built by Daniel Berthereau for [Fondation Maison de Salins].
 
