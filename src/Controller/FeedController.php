@@ -158,7 +158,7 @@ class FeedController extends AbstractActionController
         ];
         $allowedTags = '<p><a><i><b><em><strong><br>';
 
-        $maxLength = $this->siteSettings()->get('feed_entry_length', 0);
+        $maxLength = (int) $this->siteSettings()->get('feed_entry_length', 0);
 
         /** @var \Omeka\Api\Representation\SiteRepresentation $currentSite */
         $currentSite = $this->currentSite();
