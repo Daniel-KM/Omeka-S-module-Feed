@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-27 00:00+0200\n"
+"POT-Creation-Date: 2021-10-25 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,68 +21,68 @@ msgstr ""
 msgid "Logo"
 msgstr ""
 
-#: src/Generic/AbstractModule.php:598
+#: src/Generic/AbstractModule.php:66
 #, php-format
 msgid "This module requires the module \"%s\"."
 msgstr ""
 
-#: src/Generic/AbstractModule.php:618
+#: src/Generic/AbstractModule.php:73
 #, php-format
 msgid "This module requires modules \"%s\"."
 msgstr ""
 
-#: src/Generic/AbstractModule.php:686
+#: src/Generic/AbstractModule.php:80
+msgid "This module has resources that cannot be installed."
+msgstr ""
+
+#: src/Generic/AbstractModule.php:725
 #, php-format
 msgid ""
 "The module \"%s\" was automatically deactivated because the dependencies are "
 "unavailable."
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:13
+#: src/Form/SiteSettingsFieldset.php:14
 msgid "Feed (rss/atom)"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:22
+#: src/Form/SiteSettingsFieldset.php:23
 msgid "Image or logo for the channel"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:32
+#: src/Form/SiteSettingsFieldset.php:33
 msgid "Feed entries"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:48
+#: src/Form/SiteSettingsFieldset.php:50
 msgid "Max entry length"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:49
+#: src/Form/SiteSettingsFieldset.php:51
 msgid "0 means all text for pages and resource descriptions."
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:61
-msgid "Media type"
-msgstr ""
-
-#: src/Form/SiteSettingsFieldset.php:63
+#: src/Form/SiteSettingsFieldset.php:65
 msgid "application/atom+xml and application/rss+xml (standard)"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:64
+#: src/Form/SiteSettingsFieldset.php:66
 msgid "application/xml (most compatible)"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:75
+#: src/Form/SiteSettingsFieldset.php:78
 msgid "Content disposition"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:77
+#: src/Form/SiteSettingsFieldset.php:80
 msgid "Attachment to download"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:78
+#: src/Form/SiteSettingsFieldset.php:81
 msgid "Inline to display"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:79
+#: src/Form/SiteSettingsFieldset.php:82
 msgid "Undefined"
 msgstr ""
 
