@@ -174,6 +174,7 @@ class FeedController extends AbstractActionController
             $page = null;
             $resource = null;
 
+            // See module BlockPlus, block Showcase.
             // This is a resource.
             if (is_numeric($url)) {
                 try {
@@ -183,7 +184,7 @@ class FeedController extends AbstractActionController
                     continue;
                 }
             } else {
-                $result = preg_match('~(?:/?s/([^/]+)/)?(page|item|item-set|media|annotation)/([^;\?\#]+)~', $url, $matches);
+                $result = preg_match('~(?:/?s/([^/]+)/)?(page|item-set|item|media|annotation)/([^;\?\#]+)~', $url, $matches);
                 if (!$result) {
                     $part = mb_strpos($url, '/') === 0 ? mb_substr($url, 1) : $url;
                     $matches = [
@@ -201,13 +202,13 @@ class FeedController extends AbstractActionController
                             $logUnavailableEntry($url);
                             continue 2;
                         } else {
-                            $site = $this->searchOne('sites', ['slug' => $matches[1]])->getContent();
-                            if (!$site) {
+                            try {
+                                $site = $api->read('sites', ['slug' => $matches[1]])->getContent();
+                            } catch (NotFoundException $e) {
                                 $logUnavailableEntry($url);
                                 continue 2;
                             }
                         }
-                        // SearchOne cannot be used for pages.
                         try {
                             $page = $api->read('site_pages', ['site' => $site->id(), 'slug' => $matches[3]])->getContent();
                         } catch (NotFoundException $e) {
