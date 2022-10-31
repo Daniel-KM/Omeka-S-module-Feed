@@ -21,7 +21,7 @@ class SiteSettingsFieldset extends Fieldset
                 'name' => 'feed_logo',
                 'type' => OmekaElement\Asset::class,
                 'options' => [
-                    'label' => 'Image or logo for the channel', // @translate
+                    'label' => 'Specific Image or logo for the channel (default to site thumbnail)', // @translate
                 ],
                 'attributes' => [
                     'id' => 'feed_logo',
