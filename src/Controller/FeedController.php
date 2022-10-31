@@ -185,33 +185,35 @@ class FeedController extends AbstractActionController
                     continue;
                 }
             } else {
-                $result = preg_match('~(?:/?s/([^/]+)/)?(page|item-set|item|media|annotation)/([^;\?\#]+)~', $url, $matches);
+                $result = preg_match('~(?:/?s/(?<site>[^/]+)/)?(?<resource_type>page|item-set|item|media|annotation)/(?<resource_id>[^;\?\#]+)~', $url, $matches);
                 if (!$result) {
                     $part = mb_strpos($url, '/') === 0 ? mb_substr($url, 1) : $url;
                     $matches = [
-                        '/s/' . $currentSiteSlug . '/page/' . $part,
-                        $currentSiteSlug,
-                        'page',
-                        $part,
+                        0 => '/s/' . $currentSiteSlug . '/page/' . $part,
+                        'site' => $currentSiteSlug,
+                        1 => $currentSiteSlug,
+                        'resource_type' => 'page',
+                        2 => 'page',
+                        'resource_id' => $part,
+                        3 => $part,
                     ];
                 }
-                switch ($matches[2]) {
+                switch ($matches['resource_type']) {
                     case 'page':
-                        if ($matches[1] === $currentSiteSlug) {
+                        if (!$matches['site']) {
                             $site = $currentSite;
-                        } elseif (!$matches[1]) {
-                            $logUnavailableEntry($url);
-                            continue 2;
+                        } elseif ($matches['site'] === $currentSiteSlug) {
+                            $site = $currentSite;
                         } else {
                             try {
-                                $site = $api->read('sites', ['slug' => $matches[1]])->getContent();
+                                $site = $api->read('sites', ['slug' => $matches['site']])->getContent();
                             } catch (NotFoundException $e) {
                                 $logUnavailableEntry($url);
                                 continue 2;
                             }
                         }
                         try {
-                            $page = $api->read('site_pages', ['site' => $site->id(), 'slug' => $matches[3]])->getContent();
+                            $page = $api->read('site_pages', ['site' => $site->id(), 'slug' => $matches['resource_id']])->getContent();
                         } catch (NotFoundException $e) {
                             $logUnavailableEntry($url);
                             continue 2;
@@ -221,7 +223,7 @@ class FeedController extends AbstractActionController
                     // Ressources.
                     default:
                         try {
-                            $resource = $api->read($resourceNames[$matches[2]], ['id' => $matches[3]])->getContent();
+                            $resource = $api->read($resourceNames[$matches['resource_type']], ['id' => $matches['resource_id']])->getContent();
                         } catch (NotFoundException $e) {
                             $logUnavailableEntry($url);
                             continue 2;
@@ -234,9 +236,11 @@ class FeedController extends AbstractActionController
                 /** @var \Omeka\Api\Representation\AbstractEntityRepresentation $record */
                 $record = $page;
                 $resourceName = 'site_pages';
+                $siteSlug = $page->site()->slug();
             } elseif ($resource) {
                 $record = $resource;
                 $resourceName = $record->resourceName();
+                $siteSlug = $currentSiteSlug;
             } else {
                 continue;
             }
@@ -245,7 +249,7 @@ class FeedController extends AbstractActionController
             $id = $controllerNames[$resourceName] . '-' . $record->id();
             $entry
                 ->setId($id)
-                ->setLink($record->siteUrl($site->slug(), true))
+                ->setLink($record->siteUrl($siteSlug, true))
                 ->setDateCreated($record->created())
                 ->setDateModified($record->modified())
             ;
