@@ -49,6 +49,12 @@ Options available in the site settings are:
 - Content disposition, that can be Attachment, Inline, or Undefined.
 
 
+TODO
+----
+
+- [ ] Implement inline link to feed inside html, like coins.
+
+
 Warning
 -------
 
