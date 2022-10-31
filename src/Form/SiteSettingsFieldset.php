@@ -16,6 +16,7 @@ class SiteSettingsFieldset extends Fieldset
     public function init(): void
     {
         $this
+            ->setAttribute('id', 'feed')
             ->add([
                 'name' => 'feed_logo',
                 'type' => Asset::class,
