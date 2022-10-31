@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 namespace Feed;
 
 if (!class_exists(\Generic\AbstractModule::class)) {
@@ -33,6 +34,15 @@ class Module extends AbstractModule
                 ['Feed\Controller\Feed']
             )
         ;
+    }
+
+    protected function postInstall(): void
+    {
+        $messenger = $this->getServiceLocator()->get('ControllerPluginManager')->get('messenger');
+        $message = new \Omeka\Stdlib\Message(
+            'Links to automatic feeds from search results can be appended to item / browse and item sets / browse pages, with module BlocksDisposition or through the theme. Furthermore, each site can add a specific manual feed via site settings.' // @translate
+        );
+        $messenger->addSuccess($message);
     }
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager): void
