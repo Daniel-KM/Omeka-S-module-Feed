@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 namespace Feed;
 
 return [
@@ -88,6 +89,16 @@ return [
                 'base_dir' => dirname(__DIR__) . '/language',
                 'pattern' => '%s.mo',
                 'text_domain' => null,
+            ],
+        ],
+    ],
+    'blocksdisposition' => [
+        'views' => [
+            'item_set_browse' => [
+                'Feed',
+            ],
+            'item_browse' => [
+                'Feed',
             ],
         ],
     ],
