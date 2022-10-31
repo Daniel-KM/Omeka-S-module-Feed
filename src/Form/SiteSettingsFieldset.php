@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
+
 namespace Feed\Form;
 
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
-use Omeka\Form\Element\ArrayTextarea;
-use Omeka\Form\Element\Asset;
+use Omeka\Form\Element as OmekaElement;
 
 class SiteSettingsFieldset extends Fieldset
 {
@@ -19,7 +19,7 @@ class SiteSettingsFieldset extends Fieldset
             ->setAttribute('id', 'feed')
             ->add([
                 'name' => 'feed_logo',
-                'type' => Asset::class,
+                'type' => OmekaElement\Asset::class,
                 'options' => [
                     'label' => 'Image or logo for the channel', // @translate
                 ],
@@ -28,10 +28,23 @@ class SiteSettingsFieldset extends Fieldset
                 ],
             ])
             ->add([
-                'name' => 'feed_entries',
-                'type' => ArrayTextarea::class,
+                'name' => 'feed_entry_length',
+                'type' => Element\Number::class,
                 'options' => [
-                    'label' => 'Feed entries', // @translate
+                    'label' => 'Max number of characters of an entry', // @translate
+                    'info' => '0 means all text for pages and resource descriptions.', // @translate
+                ],
+                'attributes' => [
+                    'id' => 'feed_entry_length',
+                    'min' => 0,
+                    'required' => false,
+                ],
+            ])
+            ->add([
+                'name' => 'feed_entries',
+                'type' => OmekaElement\ArrayTextarea::class,
+                'options' => [
+                    'label' => 'Entries for the static feed', // @translate
                     'as_key_value' => false,
                 ],
                 'attributes' => [
@@ -42,19 +55,6 @@ class SiteSettingsFieldset extends Fieldset
 2
 item/4
 page/article-two',
-                ],
-            ])
-            ->add([
-                'name' => 'feed_entry_length',
-                'type' => Element\Number::class,
-                'options' => [
-                    'label' => 'Max entry length', // @translate
-                    'info' => '0 means all text for pages and resource descriptions.', // @translate
-                ],
-                'attributes' => [
-                    'id' => 'feed_entry_length',
-                    'min' => 0,
-                    'required' => false,
                 ],
             ])
             ->add([

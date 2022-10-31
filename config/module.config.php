@@ -53,8 +53,8 @@ return [
     'feed' => [
         'site_settings' => [
             'feed_logo' => null,
-            'feed_entries' => [],
             'feed_entry_length' => 1000,
+            'feed_entries' => [],
             'feed_media_type' => 'standard',
             'feed_disposition' => 'attachment',
         ],

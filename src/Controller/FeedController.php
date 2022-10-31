@@ -68,7 +68,7 @@ class FeedController extends AbstractActionController
         }
 
         /** @var \Omeka\Api\Representation\AssetRepresentation $asset */
-        $asset = $this->siteSettings()->get('feed_logo');
+        $asset = $siteSettings->get('feed_logo');
         if ($asset) {
             $image = [
                 'uri' => $asset->assetUrl(),
@@ -97,7 +97,7 @@ class FeedController extends AbstractActionController
         // TODO Manage content type requests (atom/rss).
         // Note: normally, application/rss+xml is the standard one, but text/xml
         // may be more compatible.
-        if ($this->siteSettings()->get('feed_media_type', 'standard') === 'xml') {
+        if ($siteSettings->get('feed_media_type', 'standard') === 'xml') {
             $headers
                 ->addHeaderLine('Content-type: ' . 'text/xml; charset=UTF-8');
         } else {
@@ -105,7 +105,7 @@ class FeedController extends AbstractActionController
                 ->addHeaderLine('Content-type: ' . 'application/' . $type . '+xml; charset=UTF-8');
         }
 
-        $contentDisposition = $this->siteSettings()->get('feed_disposition', 'attachment');
+        $contentDisposition = $siteSettings->get('feed_disposition', 'attachment');
         switch ($contentDisposition) {
             case 'undefined':
                 break;
@@ -158,13 +158,14 @@ class FeedController extends AbstractActionController
         ];
         $allowedTags = '<p><a><i><b><em><strong><br>';
 
-        $maxLength = (int) $this->siteSettings()->get('feed_entry_length', 0);
+        $siteSettings = $this->siteSettings();
+        $maxContentLength = (int) $siteSettings->get('feed_entry_length', 0);
 
         /** @var \Omeka\Api\Representation\SiteRepresentation $currentSite */
         $currentSite = $this->currentSite();
         $currentSiteSlug = $currentSite->slug();
 
-        $urls = $this->siteSettings()->get('feed_entries', []);
+        $urls = $siteSettings->get('feed_entries', []);
         $matches = [];
         foreach ($urls as $url) {
             /**
@@ -269,9 +270,9 @@ class FeedController extends AbstractActionController
                 $content = $this->viewRenderer->render($contentView);
 
                 if ($content) {
-                    if ($maxLength) {
+                    if ($maxContentLength) {
                         $clean = trim(str_replace('  ', ' ', strip_tags($content)));
-                        $content = mb_substr($clean, 0, $maxLength) . '…';
+                        $content = mb_substr($clean, 0, $maxContentLength) . '…';
                     } else {
                         $content = trim(strip_tags($content, $allowedTags));
                     }
@@ -289,6 +290,12 @@ class FeedController extends AbstractActionController
                 $entry->setTitle((string) $resource->displayTitle($id));
                 $content = strip_tags($resource->displayDescription(), $allowedTags);
                 if ($content) {
+                    if ($maxContentLength) {
+                        $clean = trim(str_replace('  ', ' ', strip_tags($content)));
+                        $content = mb_substr($clean, 0, $maxContentLength) . '…';
+                    } else {
+                        $content = trim(strip_tags($content, $allowedTags));
+                    }
                     $entry->setContent($content);
                 }
                 $shortDescription = $resource->value('bibo:shortDescription');
