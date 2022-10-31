@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 namespace Feed\Controller;
 
 use Laminas\Feed\Writer\Feed;
@@ -30,6 +31,22 @@ class FeedController extends AbstractActionController
     }
 
     public function indexAction()
+    {
+        return $this->rss('static');
+    }
+
+    /**
+     * Get rss from search results.
+     *
+     * Adapted in module AdvancedSearch.
+     * @see \AdvancedSearch\Controller\IndexController::rss()
+     */
+    public function rssAction()
+    {
+        return $this->rss('dynamic');
+    }
+
+    protected function rss(string $mode)
     {
         $type = $this->params()->fromRoute('feed', 'rss');
 
@@ -88,7 +105,9 @@ class FeedController extends AbstractActionController
             $feed->setImage($image);
         }
 
-        $this->appendEntries($feed);
+        $mode === 'static'
+            ? $this->appendEntriesStatic($feed)
+            : $this->appendEntriesDynamic($feed);
 
         $content = $feed->export($type);
 
@@ -132,10 +151,8 @@ class FeedController extends AbstractActionController
 
     /**
      * Fill each entry according to the site setting.
-     *
-     * @param Feed $feed
      */
-    protected function appendEntries(Feed $feed): void
+    protected function appendEntriesStatic(Feed $feed): void
     {
         $api = $this->api();
         $pageMetadata = $this->viewHelpers()->has('pageMetadata') ? $this->viewHelpers()->get('pageMetadata') : null;
@@ -146,6 +163,7 @@ class FeedController extends AbstractActionController
                 $url
             ));
         };
+
         // Controller names to resource names.
         $resourceNames = [
             'page' => 'site_pages',
@@ -154,6 +172,7 @@ class FeedController extends AbstractActionController
             'media' => 'media',
             'annotation' => 'annotations',
         ];
+
         // Resource name to controller name.
         $controllerNames = [
             'site_pages' => 'page',
@@ -162,6 +181,7 @@ class FeedController extends AbstractActionController
             'media' => 'media',
             'annotations' => 'annotation',
         ];
+
         $allowedTags = '<p><a><i><b><em><strong><br>';
 
         $siteSettings = $this->siteSettings();
@@ -312,6 +332,78 @@ class FeedController extends AbstractActionController
                 if ($shortDescription) {
                     $entry->setDescription(strip_tags($shortDescription, $allowedTags));
                 }
+            }
+
+            $feed->addEntry($entry);
+        }
+    }
+
+    /**
+     * Fill each entry according to the search query.
+     */
+    protected function appendEntriesDynamic(Feed $feed): void
+    {
+        $controllersToApi = [
+            'item' => 'items',
+            'resource' => 'resources',
+            'item-set' => 'item_sets',
+            'media' => 'media',
+            'annotation' => 'annotations',
+        ];
+
+        // Resource name to controller name.
+        $controllerNames = [
+            'site_pages' => 'page',
+            'items' => 'item',
+            'item_sets' => 'item-set',
+            'media' => 'media',
+            'annotations' => 'annotation',
+        ];
+
+        $allowedTags = '<p><a><i><b><em><strong><br>';
+
+        $maxLength = (int) $this->siteSettings()->get('feed_entry_length', 0);
+
+        /** @var \Omeka\Api\Representation\SiteRepresentation $currentSite */
+        $api = $this->api();
+        $currentSite = $this->currentSite();
+        $currentSiteSlug = $currentSite->slug();
+
+        $controller = $this->params()->fromRoute('resource-type', 'item');
+        $mainResourceName = $controllersToApi[$controller] ?? 'items';
+
+        // Set most recent first by default and manage pagination.
+        $this->setBrowseDefaults('created');
+        $query = $this->params()->fromQuery();
+
+        $resources = $api->search($mainResourceName, $query)->getContent();
+        foreach ($resources as $resource) {
+            // Manage the case where the main resource is "resource".
+            $resourceName = $resource->resourceName();
+
+            $entry = $feed->createEntry();
+            $id = $controllerNames[$resourceName] . '-' . $resource->id();
+
+            $entry
+                ->setId($id)
+                ->setLink($resource->siteUrl($currentSiteSlug, true))
+                ->setDateCreated($resource->created())
+                ->setDateModified($resource->modified())
+                ->setTitle((string) $resource->displayTitle($id));
+
+            $content = strip_tags($resource->displayDescription(), $allowedTags);
+            if ($content) {
+                if ($maxLength) {
+                    $clean = trim(str_replace('  ', ' ', strip_tags($content)));
+                    $content = mb_substr($clean, 0, $maxLength) . '…';
+                } else {
+                    $content = trim(strip_tags($content, $allowedTags));
+                }
+                $entry->setContent($content);
+            }
+            $shortDescription = $resource->value('bibo:shortDescription');
+            if ($shortDescription) {
+                $entry->setDescription(strip_tags($shortDescription, $allowedTags));
             }
 
             $feed->addEntry($entry);

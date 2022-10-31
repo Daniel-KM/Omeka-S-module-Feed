@@ -21,6 +21,7 @@ return [
         'routes' => [
             'site' => [
                 'child_routes' => [
+                    // Static atom/rss feed of a site.
                     'feed' => [
                         'type' => \Laminas\Router\Http\Segment::class,
                         'options' => [
@@ -33,6 +34,46 @@ return [
                                 'controller' => 'Feed',
                                 'action' => 'index',
                                 'feed' => 'rss',
+                            ],
+                        ],
+                    ],
+                    // Dynamic feed for search of each resource type.
+                    // A search shall be /s/site/item.rss?query (or atom.xml),
+                    // but it is used by Bulk Export. So add a rss feed to it
+                    // and module Feed is mainly used for static feed.
+                    'feed-resource-atom' => [
+                        'type' => \Laminas\Router\Http\Segment::class,
+                        'options' => [
+                            'route' => '/atom[/:resource-type]',
+                            'constraints' => [
+                                'action' => 'rss',
+                                'feed' => 'atom',
+                                'resource-type' => 'resource|item-set|item|media|annotation',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Feed\Controller',
+                                'controller' => 'Feed',
+                                'action' => 'rss',
+                                'feed' => 'atom',
+                                'resource-type' => 'item',
+                            ],
+                        ],
+                    ],
+                    'feed-resource-rss' => [
+                        'type' => \Laminas\Router\Http\Segment::class,
+                        'options' => [
+                            'route' => '/rss[/:resource-type]',
+                            'constraints' => [
+                                'action' => 'rss',
+                                'feed' => 'rss',
+                                'resource-type' => 'resource|item-set|item|media|annotation',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Feed\Controller',
+                                'controller' => 'Feed',
+                                'action' => 'rss',
+                                'feed' => 'rss',
+                                'resource-type' => 'item',
                             ],
                         ],
                     ],
