@@ -13,14 +13,20 @@ class SiteSettingsFieldset extends Fieldset
      */
     protected $label = 'Feed (rss/atom)'; // @translate
 
+    protected $elementGroups = [
+        'feed' => 'Feed (rss/atom)', // @translate
+    ];
+
     public function init(): void
     {
         $this
             ->setAttribute('id', 'feed')
+            ->setOption('element_groups', $this->elementGroups)
             ->add([
                 'name' => 'feed_logo',
                 'type' => OmekaElement\Asset::class,
                 'options' => [
+                    'element_group' => 'feed',
                     'label' => 'Specific Image or logo for the channel (default to site thumbnail)', // @translate
                 ],
                 'attributes' => [
@@ -31,6 +37,7 @@ class SiteSettingsFieldset extends Fieldset
                 'name' => 'feed_entry_length',
                 'type' => Element\Number::class,
                 'options' => [
+                    'element_group' => 'feed',
                     'label' => 'Max number of characters of an entry', // @translate
                     'info' => '0 means all text for pages and resource descriptions.', // @translate
                 ],
@@ -44,6 +51,7 @@ class SiteSettingsFieldset extends Fieldset
                 'name' => 'feed_entries',
                 'type' => OmekaElement\ArrayTextarea::class,
                 'options' => [
+                    'element_group' => 'feed',
                     'label' => 'Entries for the static feed', // @translate
                     'as_key_value' => false,
                 ],
@@ -61,6 +69,7 @@ page/article-two',
                 'name' => 'feed_media_type',
                 'type' => Element\Radio::class,
                 'options' => [
+                    'element_group' => 'feed',
                     'label' => 'Media type', // @translate
                     'value_options' => [
                         'standard' => 'application/atom+xml and application/rss+xml (standard)', // @translate
@@ -76,6 +85,7 @@ page/article-two',
                 'name' => 'feed_disposition',
                 'type' => Element\Radio::class,
                 'options' => [
+                    'element_group' => 'feed',
                     'label' => 'Content disposition', // @translate
                     'value_options' => [
                         'attachment' => 'Attachment to download', // @translate
