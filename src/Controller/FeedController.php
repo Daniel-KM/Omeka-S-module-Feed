@@ -39,7 +39,7 @@ class FeedController extends AbstractActionController
      * Get rss from search results.
      *
      * Adapted in module AdvancedSearch.
-     * @see \AdvancedSearch\Controller\IndexController::rss()
+     * @see \AdvancedSearch\Controller\SearchController::rss()
      */
     public function rssAction()
     {
