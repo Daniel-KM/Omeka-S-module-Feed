@@ -12,12 +12,12 @@ pages and resources.
 Installation
 ------------
 
-The optional module [Generic] may be installed first.
-
-The module uses external libraries, so use the release zip to install it, or use
-and init the source.
-
 See general end user documentation for [installing a module].
+
+This module requires the module [Common], that should be installed first.
+
+The module uses an external library, so use the release zip to install it, or
+use and init the source.
 
 * From the zip
 
@@ -103,9 +103,9 @@ First version of this module was built by Daniel Berthereau for [Fondation Maiso
 
 [Omeka S]: https://omeka.org/s
 [Feed]: https://gitlab.com/Daniel-KM/Omeka-S-module-Feed
-[Generic]: https://gitlab.com/Daniel-KM/Omeka-S-module-Generic
+[Common]: https://gitlab.com/Daniel-KM/Omeka-S-module-Common
 [Feed.zip]: https://gitlab.com/Daniel-KM/Omeka-S-module-Feed/-/releases
-[Installing a module]: https://omeka.org/s/docs/user-manual/modules/#installing-modules
+[installing a module]: https://omeka.org/s/docs/user-manual/modules/#installing-modules
 [module issues]: https://gitlab.com/Daniel-KM/Omeka-S-module-Feed/-/issues
 [CeCILL v2.1]: https://www.cecill.info/licences/Licence_CeCILL_V2.1-en.html
 [GNU/GPL]: https://www.gnu.org/licenses/gpl-3.0.html
