@@ -2,7 +2,7 @@
 
 namespace Feed;
 
-use Omeka\Stdlib\Message;
+use Common\Stdlib\PsrMessage;
 
 /**
  * @var Module $this
@@ -19,12 +19,21 @@ use Omeka\Stdlib\Message;
 $plugins = $services->get('ControllerPluginManager');
 $api = $plugins->get('api');
 $settings = $services->get('Omeka\Settings');
+$translate = $plugins->get('translate');
 $connection = $services->get('Omeka\Connection');
 $messenger = $plugins->get('messenger');
 $entityManager = $services->get('Omeka\EntityManager');
 
+if (!method_exists($this, 'checkModuleActiveVersion') || !$this->checkModuleActiveVersion('Common', '3.4.60')) {
+    $message = new \Omeka\Stdlib\Message(
+        $translate('The module %1$s should be upgraded to version %2$s or later.'), // @translate
+        'Common', '3.4.60'
+    );
+    throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $message);
+}
+
 if (version_compare($oldVersion, '3.3.3.3', '<')) {
-    $message = new Message(
+    $message = new PsrMessage(
         'It’s now possible to get automatic feeds from search results.' // @translate
     );
     $messenger->addSuccess($message);
