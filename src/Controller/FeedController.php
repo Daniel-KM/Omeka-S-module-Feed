@@ -158,10 +158,10 @@ class FeedController extends AbstractActionController
         $pageMetadata = $this->viewHelpers()->has('pageMetadata') ? $this->viewHelpers()->get('pageMetadata') : null;
 
         $logUnavailableEntry = function ($url): void {
-            $this->logger()->warn(new Message(
-                'The page "%s" is no longer available and cannot be listed in rss feed.', // @translate
-                $url
-            ));
+            $this->logger()->warn(
+                'The page "{page_url}" is no longer available and cannot be listed in rss feed.', // @translate
+                ['page_url' => $url]
+            );
         };
 
         // Controller names to resource names.
