@@ -21,7 +21,7 @@
         "rss"
     ],
     "require": {
-        "laminas/laminas-feed": "2.18.2"
+        "laminas/laminas-feed": "^2.18"
     },
     "provide": {
         "laminas/laminas-escaper": "*",
