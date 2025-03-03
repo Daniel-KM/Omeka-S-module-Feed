@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-25 00:00+0000\n"
+"POT-Creation-Date: 2025-03-03 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,77 +17,73 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Controller/FeedController.php:76
+#: data/scripts/upgrade.php:29 Module.php:47
+#, php-format
+msgid "The module %1$s should be upgraded to version %2$s or later."
+msgstr ""
+
+#: src/Controller/FeedController.php:99
 msgid "Logo"
 msgstr ""
 
-#: src/Generic/AbstractModule.php:66
-#, php-format
-msgid "This module requires the module \"%s\"."
+#: data/scripts/upgrade.php:37
+msgid "It’s now possible to get automatic feeds from search results."
 msgstr ""
 
-#: src/Generic/AbstractModule.php:73
-#, php-format
-msgid "This module requires modules \"%s\"."
-msgstr ""
-
-#: src/Generic/AbstractModule.php:80
-msgid "This module has resources that cannot be installed."
-msgstr ""
-
-#: src/Generic/AbstractModule.php:725
-#, php-format
+#: Module.php:58
 msgid ""
-"The module \"%s\" was automatically deactivated because the dependencies are "
-"unavailable."
+"Links to automatic feeds from search results can be appended to item / "
+"browse and item sets / browse pages, with module BlocksDisposition or "
+"through the theme. Furthermore, each site can add a specific manual feed via "
+"site settings."
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:14
+#: src/Form/SiteSettingsFieldset.php:14 src/Form/SiteSettingsFieldset.php:17
 msgid "Feed (rss/atom)"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:23
-msgid "Image or logo for the channel"
+#: src/Form/SiteSettingsFieldset.php:30
+msgid "Specific Image or logo for the channel (default to site thumbnail)"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:33
-msgid "Feed entries"
+#: src/Form/SiteSettingsFieldset.php:41
+msgid "Max number of characters of an entry"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:50
-msgid "Max entry length"
-msgstr ""
-
-#: src/Form/SiteSettingsFieldset.php:51
+#: src/Form/SiteSettingsFieldset.php:42
 msgid "0 means all text for pages and resource descriptions."
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:65
+#: src/Form/SiteSettingsFieldset.php:55
+msgid "Entries for the static feed"
+msgstr ""
+
+#: src/Form/SiteSettingsFieldset.php:75
 msgid "application/atom+xml and application/rss+xml (standard)"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:66
+#: src/Form/SiteSettingsFieldset.php:76
 msgid "application/xml (most compatible)"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:78
+#: src/Form/SiteSettingsFieldset.php:89
 msgid "Content disposition"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:80
+#: src/Form/SiteSettingsFieldset.php:91
 msgid "Attachment to download"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:81
+#: src/Form/SiteSettingsFieldset.php:92
 msgid "Inline to display"
 msgstr ""
 
-#: src/Form/SiteSettingsFieldset.php:82
+#: src/Form/SiteSettingsFieldset.php:93
 msgid "Undefined"
 msgstr ""
 
-#: src/Controller/FeedController.php:139
-#, php-format
+#: src/Controller/FeedController.php:162
 msgid ""
-"The page \"%s\" is no longer available and cannot be listed in rss feed."
+"The page \"{page_url}\" is no longer available and cannot be listed in rss "
+"feed."
 msgstr ""

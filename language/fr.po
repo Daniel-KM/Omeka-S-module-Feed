@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-25 00:00+0000\n"
-"PO-Revision-Date: 2021-10-25 00:00+0000\n"
+"POT-Creation-Date: 2025-03-03 00:00+0000\n"
+"PO-Revision-Date: 2025-03-03 00:00+0000\n"
 "Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -15,88 +15,113 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.2.2\n"
 
-#: src/Controller/FeedController.php:76
+#: data/scripts/upgrade.php:29 Module.php:47
+#, php-format
+msgid "The module %1$s should be upgraded to version %2$s or later."
+msgstr "Le module %1$s doit être mis à niveau à la version %2$s ou ultérieure."
+
+#: src/Controller/FeedController.php:99
 msgid "Logo"
 msgstr "Logo"
 
-#: src/Generic/AbstractModule.php:66
-#, php-format
-msgid "This module requires the module \"%s\"."
-msgstr "Ce module requiert le module \"%s\"."
-
-#: src/Generic/AbstractModule.php:73
-#, php-format
-msgid "This module requires modules \"%s\"."
-msgstr "Ce module requiert les modules \"%s\"."
-
-#: src/Generic/AbstractModule.php:80
-msgid "This module has resources that cannot be installed."
-msgstr "Ce module a des ressources qui ne peuvent pas être installées."
-
-#: src/Generic/AbstractModule.php:725
-#, php-format
-msgid ""
-"The module \"%s\" was automatically deactivated because the dependencies are "
-"unavailable."
+#: data/scripts/upgrade.php:37
+msgid "It’s now possible to get automatic feeds from search results."
 msgstr ""
-"Le module \"%s\" a été automatiquement désactivé car ses dépendances ne sont "
-"plus disponibles."
+"Il est désormais possible d’avoir des flux automatiques depuis les résultats "
+"de recherche."
 
-#: src/Form/SiteSettingsFieldset.php:14
+#: Module.php:58
+msgid ""
+"Links to automatic feeds from search results can be appended to item / "
+"browse and item sets / browse pages, with module BlocksDisposition or "
+"through the theme. Furthermore, each site can add a specific manual feed via "
+"site settings."
+msgstr ""
+"Les liens pour les flux automatiques des résultats de recherche peuvent être "
+"ajoutées au pages item / browse et item sets / browse avec le module "
+"BlocksDisposition ou via le thème. De plus, chaque site peut ajouter un flux "
+"spécifique via les paramètres de site."
+
+#: src/Form/SiteSettingsFieldset.php:14 src/Form/SiteSettingsFieldset.php:17
 msgid "Feed (rss/atom)"
 msgstr "Feed (rss/atom)"
 
-#: src/Form/SiteSettingsFieldset.php:23
-msgid "Image or logo for the channel"
-msgstr "Image ou logo pour le flux"
+#: src/Form/SiteSettingsFieldset.php:30
+msgid "Specific Image or logo for the channel (default to site thumbnail)"
+msgstr "Image spécifique ou logo pour le flux (vignette du site par défaut)"
 
-#: src/Form/SiteSettingsFieldset.php:33
-msgid "Feed entries"
-msgstr "Entrées du flux"
+#: src/Form/SiteSettingsFieldset.php:41
+msgid "Max number of characters of an entry"
+msgstr "Nombre maximum de caractères pour une entrée"
 
-#: src/Form/SiteSettingsFieldset.php:50
-msgid "Max entry length"
-msgstr "Taille maximale d’une entrée"
-
-#: src/Form/SiteSettingsFieldset.php:51
+#: src/Form/SiteSettingsFieldset.php:42
 msgid "0 means all text for pages and resource descriptions."
 msgstr ""
-"\"0\" signifie le texte entier pour les pages et les descriptions des "
+"« 0 » signifie le texte entier pour les pages et les descriptions des "
 "ressources."
 
-#: src/Form/SiteSettingsFieldset.php:65
+#: src/Form/SiteSettingsFieldset.php:55
+msgid "Entries for the static feed"
+msgstr "Entrées pour le flux statique"
+
+#: src/Form/SiteSettingsFieldset.php:75
 msgid "application/atom+xml and application/rss+xml (standard)"
 msgstr "application/atom+xml et application/rss+xml (standard)"
 
-#: src/Form/SiteSettingsFieldset.php:66
+#: src/Form/SiteSettingsFieldset.php:76
 msgid "application/xml (most compatible)"
 msgstr "application/xml (plus compatible)"
 
-#: src/Form/SiteSettingsFieldset.php:78
+#: src/Form/SiteSettingsFieldset.php:89
 msgid "Content disposition"
 msgstr "Disposition du contenu"
 
-#: src/Form/SiteSettingsFieldset.php:80
+#: src/Form/SiteSettingsFieldset.php:91
 msgid "Attachment to download"
 msgstr "Pièce jointe à télécharger"
 
-#: src/Form/SiteSettingsFieldset.php:81
+#: src/Form/SiteSettingsFieldset.php:92
 msgid "Inline to display"
 msgstr "Affichage en ligne"
 
-#: src/Form/SiteSettingsFieldset.php:82
+#: src/Form/SiteSettingsFieldset.php:93
 msgid "Undefined"
 msgstr "Indéfini"
 
-#: src/Controller/FeedController.php:139
-#, php-format
+#: src/Controller/FeedController.php:162
 msgid ""
-"The page \"%s\" is no longer available and cannot be listed in rss feed."
+"The page \"{page_url}\" is no longer available and cannot be listed in rss "
+"feed."
 msgstr ""
-"La page \"%s\" n’est plus disponible et ne peut plus être listée dans le "
-"flux rss."
+"La page « {page_url} » n’est plus disponible et ne peut plus être listée "
+"dans le flux rss."
+
+#, php-format
+#~ msgid "This module requires the module \"%s\"."
+#~ msgstr "Ce module requiert le module \"%s\"."
+
+#, php-format
+#~ msgid "This module requires modules \"%s\"."
+#~ msgstr "Ce module requiert les modules \"%s\"."
+
+#~ msgid "This module has resources that cannot be installed."
+#~ msgstr "Ce module a des ressources qui ne peuvent pas être installées."
+
+#, php-format
+#~ msgid ""
+#~ "The module \"%s\" was automatically deactivated because the dependencies "
+#~ "are unavailable."
+#~ msgstr ""
+#~ "Le module \"%s\" a été automatiquement désactivé car ses dépendances ne "
+#~ "sont plus disponibles."
+
+#~ msgid "Feed entries"
+#~ msgstr "Entrées du flux"
+
+#~ msgid "Max entry length"
+#~ msgstr "Taille maximale d’une entrée"
 
 #~ msgid "Media type"
 #~ msgstr "Média type"
