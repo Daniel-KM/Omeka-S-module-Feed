@@ -33,6 +33,17 @@ the module to `Feed`, go to the root of the module, and run:
 composer install --no-dev
 ```
 
+If an issue appears after upgrade of Omeka, don’t forget to update the packages
+of Omeka: `rm -rf vendor && composer install --no-dev`.
+
+* Server with php 8.2 or greater
+
+To support php 8.2 or greate, run this command first:
+
+```sh
+composer update
+```
+
 
 Usage
 -----
@@ -96,7 +107,7 @@ altered, and that no provisions are either added or removed herefrom.
 Copyright
 ---------
 
-* Copyright Daniel Berthereau, 2019-2023 (see [Daniel-KM] on GitLab)
+* Copyright Daniel Berthereau, 2019-2025 (see [Daniel-KM] on GitLab)
 
 First version of this module was built by Daniel Berthereau for [Fondation Maison de Salins].
 
