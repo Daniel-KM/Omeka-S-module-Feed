@@ -305,7 +305,7 @@ class FeedController extends AbstractActionController
 
                 if ($content) {
                     if ($maxContentLength) {
-                        $clean = trim(str_replace('  ', ' ', strip_tags($content)));
+                        $clean = trim(strtr(strip_tags($content), ['  ' => ' ']));
                         $content = mb_substr($clean, 0, $maxContentLength) . '…';
                     } else {
                         $content = trim(strip_tags($content, $allowedTags));
@@ -325,7 +325,7 @@ class FeedController extends AbstractActionController
                 $content = strip_tags($resource->displayDescription(), $allowedTags);
                 if ($content) {
                     if ($maxContentLength) {
-                        $clean = trim(str_replace('  ', ' ', strip_tags($content)));
+                        $clean = trim(strtr(strip_tags($content), ['  ' => ' ']));
                         $content = mb_substr($clean, 0, $maxContentLength) . '…';
                     } else {
                         $content = trim(strip_tags($content, $allowedTags));
@@ -398,7 +398,7 @@ class FeedController extends AbstractActionController
             $content = strip_tags($resource->displayDescription(), $allowedTags);
             if ($content) {
                 if ($maxLength) {
-                    $clean = trim(str_replace('  ', ' ', strip_tags($content)));
+                    $clean = trim(strtr(strip_tags($content), ['  ' => ' ']));
                     $content = mb_substr($clean, 0, $maxLength) . '…';
                 } else {
                     $content = trim(strip_tags($content, $allowedTags));
