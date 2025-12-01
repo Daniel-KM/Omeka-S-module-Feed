@@ -87,7 +87,11 @@ class FeedController extends AbstractActionController
         /** @var \Omeka\Api\Representation\AssetRepresentation $asset */
         $asset = $siteSettings->get('feed_logo');
         if (is_numeric($asset)) {
-            $asset = $this->api()->searchOne('assets', ['id' => $asset])->getContent();
+            try {
+                $asset = $this->api()->read('assets', ['id' => $asset])->getContent();
+            } catch (\Exception $e) {
+                $asset = null;
+            }
         }
         if (!$asset) {
             $asset = $site->thumbnail();
