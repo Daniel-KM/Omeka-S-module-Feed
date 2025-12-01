@@ -46,14 +46,22 @@ class Module extends AbstractModule
     protected function preInstall(): void
     {
         $services = $this->getServiceLocator();
-        $translate = $services->get('ControllerPluginManager')->get('translate');
+        $translator = $services->get('MvcTranslator');
 
         if (!method_exists($this, 'checkModuleActiveVersion') || !$this->checkModuleActiveVersion('Common', '3.4.74')) {
             $message = new \Omeka\Stdlib\Message(
-                $translate('The module %1$s should be upgraded to version %2$s or later.'), // @translate
+                $translator->translate('The module %1$s should be upgraded to version %2$s or later.'), // @translate
                 'Common', '3.4.74'
             );
             throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $message);
+        }
+
+        if (PHP_VERSION_ID < 80100) {
+            $message = new \Common\Stdlib\PsrMessage(
+                'To use the module with php lower than {php}, use version {version}.', // @translate
+                    ['php' => '8.1', 'version' => '3.4.6']
+            );
+            throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $message->setTranslator($translator));
         }
     }
 
