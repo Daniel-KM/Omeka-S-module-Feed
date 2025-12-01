@@ -19,6 +19,8 @@ This module requires the module [Common], that should be installed first.
 The module uses an external library, so use the release zip to install it, or
 use and init the source.
 
+Since version 3.4.7, php 8.1 is required. For older version, use version 3.4.6.
+
 * From the zip
 
 Download the last release [Feed.zip] from the list of releases (the master does
@@ -36,9 +38,10 @@ composer install --no-dev
 If an issue appears after upgrade of Omeka, don’t forget to update the packages
 of Omeka: `rm -rf vendor && composer install --no-dev`.
 
-* Server with php 8.2 or greater
+* Server with php 8.2 or greater on an old server
 
-To support php 8.2 or greate, run this command first:
+To support php 8.2 or greater on a server with an old php version, run this
+command first:
 
 ```sh
 composer update
