@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 00:00+0000\n"
+"POT-Creation-Date: 2026-01-12 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,20 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/scripts/upgrade.php:29 Module.php:47
+#: data/scripts/upgrade.php:39 Module.php:53
 #, php-format
 msgid "The module %1$s should be upgraded to version %2$s or later."
 msgstr ""
 
-#: src/Controller/FeedController.php:99
+#: src/Controller/FeedController.php:103
 msgid "Logo"
 msgstr ""
 
-#: data/scripts/upgrade.php:37
+#: data/scripts/upgrade.php:47 Module.php:61
+msgid "To use the module with php lower than {php}, use version {version}."
+msgstr ""
+
+#: data/scripts/upgrade.php:55
 msgid "It’s now possible to get automatic feeds from search results."
 msgstr ""
 
-#: Module.php:58
+#: Module.php:72
 msgid ""
 "Links to automatic feeds from search results can be appended to item / "
 "browse and item sets / browse pages, with module BlocksDisposition or "
@@ -82,7 +86,7 @@ msgstr ""
 msgid "Undefined"
 msgstr ""
 
-#: src/Controller/FeedController.php:162
+#: src/Controller/FeedController.php:166
 msgid ""
 "The page \"{page_url}\" is no longer available and cannot be listed in rss "
 "feed."
