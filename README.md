@@ -110,7 +110,7 @@ altered, and that no provisions are either added or removed herefrom.
 Copyright
 ---------
 
-* Copyright Daniel Berthereau, 2019-2025 (see [Daniel-KM] on GitLab)
+* Copyright Daniel Berthereau, 2019-2026 (see [Daniel-KM] on GitLab)
 
 First version of this module was built by Daniel Berthereau for [Fondation Maison de Salins].
 

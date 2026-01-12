@@ -29,5 +29,8 @@
         "laminas/laminas-servicemanager": "^3.16",
         "laminas/laminas-stdlib": "*",
         "psr/container": "*"
+    },
+    "extra": {
+        "installer-name": "Feed"
     }
 }
