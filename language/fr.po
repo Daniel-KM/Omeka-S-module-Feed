@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 00:00+0000\n"
-"PO-Revision-Date: 2026-01-12 00:00+0000\n"
+"POT-Creation-Date: 2026-03-02 00:00+0000\n"
+"PO-Revision-Date: 2026-03-02 00:00+0000\n"
 "Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -17,28 +17,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: data/scripts/upgrade.php:39 Module.php:53
+#: data/scripts/upgrade.php:39 Module.php:55
 #, php-format
 msgid "The module %1$s should be upgraded to version %2$s or later."
 msgstr "Le module %1$s doit être mis à niveau à la version %2$s ou ultérieure."
 
-#: src/Controller/FeedController.php:103
+#: data/scripts/upgrade.php:43
+msgid "Missing requirement. Unable to upgrade."
+msgstr "Pré-requis absent. Impossible de mettre à jour."
+
+#: src/Controller/FeedController.php:106
 msgid "Logo"
 msgstr "Logo"
 
-#: data/scripts/upgrade.php:47 Module.php:61
+#: data/scripts/upgrade.php:48 Module.php:63
 msgid "To use the module with php lower than {php}, use version {version}."
 msgstr ""
 "Pour utiliser le module avec un version php inférieure à {php}, utiliser la "
 "version {version}."
 
-#: data/scripts/upgrade.php:55
+#: data/scripts/upgrade.php:56
 msgid "It’s now possible to get automatic feeds from search results."
 msgstr ""
 "Il est désormais possible d’avoir des flux automatiques depuis les résultats "
 "de recherche."
 
-#: Module.php:72
+#: Module.php:74
 msgid ""
 "Links to automatic feeds from search results can be appended to item / "
 "browse and item sets / browse pages, with module BlocksDisposition or "
@@ -96,7 +100,7 @@ msgstr "Affichage en ligne"
 msgid "Undefined"
 msgstr "Indéfini"
 
-#: src/Controller/FeedController.php:166
+#: src/Controller/FeedController.php:173
 msgid ""
 "The page \"{page_url}\" is no longer available and cannot be listed in rss "
 "feed."
