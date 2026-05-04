@@ -5,8 +5,9 @@ Feed (module for Omeka S)
 > are available on [GitLab], which seems to respect users and privacy better
 > than the previous repository.__
 
-[Feed] is a module for [Omeka S] that provides a RSS feed to users from selected
-pages and resources.
+[Feed] is a module for [Omeka S] that provides RSS and Atom feeds to users from
+selected pages and resources, from search results, and from [Advanced Search]
+search pages.
 
 
 Installation
@@ -38,6 +39,15 @@ composer install --no-dev
 If an issue appears after upgrade of Omeka, don’t forget to update the packages
 of Omeka: `rm -rf vendor && composer install --no-dev`.
 
+* For test
+
+The module includes a comprehensive test suite with functional tests. Run them
+from the root of Omeka:
+
+```sh
+vendor/bin/phpunit -c modules/Feed/phpunit.xml --testdox
+```
+
 * Server with php 8.2 or greater on an old server
 
 To support php 8.2 or greater on a server with an old php version, run this
@@ -57,6 +67,13 @@ and they will be available as a rss feed at "https://example.org/s/my-site/feed"
 
 You can add "rss" or "atom" at the end of the url to force one type: "https://example.org/s/my-site/feed/atom".
 Note: atom is currently not working with diacritics and other html entities.
+
+Dynamic feeds for resource browse are available at "https://example.org/s/my-site/rss"
+and "https://example.org/s/my-site/atom".
+
+When the module [Advanced Search] is installed and active, RSS and Atom feeds are
+also available on each search page at "https://example.org/s/my-site/my-search/rss"
+and "https://example.org/s/my-site/my-search/atom".
 
 Options available in the site settings are:
 - Media type, that can be the standard one or the generic xml one.
@@ -117,6 +134,7 @@ First version of this module was built by Daniel Berthereau for [Fondation Maiso
 
 [Omeka S]: https://omeka.org/s
 [Feed]: https://gitlab.com/Daniel-KM/Omeka-S-module-Feed
+[Advanced Search]: https://gitlab.com/Daniel-KM/Omeka-S-module-AdvancedSearch
 [Common]: https://gitlab.com/Daniel-KM/Omeka-S-module-Common
 [Feed.zip]: https://gitlab.com/Daniel-KM/Omeka-S-module-Feed/-/releases
 [installing a module]: https://omeka.org/s/docs/user-manual/modules/#installing-modules
