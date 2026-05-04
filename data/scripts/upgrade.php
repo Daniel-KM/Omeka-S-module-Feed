@@ -39,15 +39,23 @@ if (!method_exists($this, 'checkModuleActiveVersion') || !$this->checkModuleActi
         $translate('The module %1$s should be upgraded to version %2$s or later.'), // @translate
         'Common', '3.4.85'
     );
-    throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $message);
+    $messenger->addError($message);
+    throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $translate('Missing requirement. Unable to upgrade.')); // @translate
 }
+
+$hasError = false;
 
 if (PHP_VERSION_ID < 80100) {
     $message = new \Common\Stdlib\PsrMessage(
         'To use the module with php lower than {php}, use version {version}.', // @translate
         ['php' => '8.1', 'version' => '3.4.6']
     );
-    throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $message->setTranslator($translator));
+    $messenger->addError($message);
+    $hasError = true;
+}
+
+if ($hasError) {
+    throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $translate('Missing requirement. Unable to upgrade.')); // @translate
 }
 
 if (version_compare($oldVersion, '3.3.3.3', '<')) {

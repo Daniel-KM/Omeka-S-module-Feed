@@ -3,7 +3,9 @@
 namespace Feed;
 
 if (!class_exists('Common\TraitModule', false)) {
-    require_once dirname(__DIR__) . '/Common/TraitModule.php';
+    require_once file_exists(dirname(__DIR__) . '/Common/src/TraitModule.php')
+        ? dirname(__DIR__) . '/Common/src/TraitModule.php'
+        : dirname(__DIR__) . '/Common/TraitModule.php';
 }
 
 use Common\TraitModule;
@@ -56,12 +58,18 @@ class Module extends AbstractModule
             throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $message);
         }
 
+        $errors = [];
+
         if (PHP_VERSION_ID < 80100) {
             $message = new \Common\Stdlib\PsrMessage(
                 'To use the module with php lower than {php}, use version {version}.', // @translate
                     ['php' => '8.1', 'version' => '3.4.6']
             );
-            throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $message->setTranslator($translator));
+            $errors[] = (string) $message->setTranslator($translator);
+        }
+
+        if ($errors) {
+            throw new \Omeka\Module\Exception\ModuleCannotInstallException(implode("\n", $errors));
         }
     }
 
