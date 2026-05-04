@@ -1,34 +1,52 @@
 {
     "name": "daniel-km/omeka-s-module-feed",
-    "description": "Provide a rss feed (module for Omeka S)",
-    "type": "library",
+    "type": "omeka-s-module",
+    "description": "Module for Omeka S: Add a rss/atom feed to Omeka with selected pages or resources.",
+    "keywords": [
+        "Omeka S",
+        "Omeka S module",
+        "feed",
+        "rss"
+    ],
     "license": "CECILL-2.1",
+    "homepage": "https://gitlab.com/Daniel-KM/Omeka-S-module-Feed",
     "authors": [
         {
             "name": "Daniel Berthereau",
             "email": "Daniel.packagist@Berthereau.net"
         }
     ],
-    "homepage": "https://gitlab.com/Daniel-KM/Omeka-S-module-Feed",
     "support": {
         "issues": "https://gitlab.com/Daniel-KM/Omeka-S-module-Feed/-/issues",
         "forum": "https://forum.omeka.org/"
     },
-    "keywords": [
-        "Omeka S",
-        "module",
-        "feed",
-        "rss"
-    ],
+    "_require (not set until Omeka S merges PR #2432)": {
+        "omeka/omeka-s": "^4.0",
+        "daniel-km/omeka-s-module-common": "*"
+    },
     "require": {
-        "php": ">=8.1",
         "laminas/laminas-feed": "^2.25"
     },
     "provide": {
         "laminas/laminas-escaper": "*",
-        "laminas/laminas-servicemanager": "^3.16",
+        "laminas/laminas-servicemanager": "*",
         "laminas/laminas-stdlib": "*",
         "psr/container": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Feed\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FeedTest\\": "tests/FeedTest/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.1"
+        }
     },
     "extra": {
         "installer-name": "Feed"
