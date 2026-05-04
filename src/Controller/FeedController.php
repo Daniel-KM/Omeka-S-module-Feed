@@ -43,7 +43,10 @@ class FeedController extends AbstractActionController
      */
     public function rssAction()
     {
-        return $this->rss('dynamic');
+        $searchConfigId = $this->params()->fromRoute('search_config_id');
+        return $searchConfigId
+            ? $this->rss('search_config')
+            : $this->rss('dynamic');
     }
 
     protected function rss(string $mode)
@@ -109,9 +112,13 @@ class FeedController extends AbstractActionController
             $feed->setImage($image);
         }
 
-        $mode === 'static'
-            ? $this->appendEntriesStatic($feed)
-            : $this->appendEntriesDynamic($feed);
+        if ($mode === 'static') {
+            $this->appendEntriesStatic($feed);
+        } elseif ($mode === 'search_config') {
+            $this->appendEntriesSearchConfig($feed);
+        } else {
+            $this->appendEntriesDynamic($feed);
+        }
 
         $content = $feed->export($type);
 
@@ -399,6 +406,136 @@ class FeedController extends AbstractActionController
             if ($content) {
                 if ($maxLength) {
                     $clean = trim(strtr(strip_tags($content), ['  ' => ' ']));
+                    $content = mb_substr($clean, 0, $maxLength) . '…';
+                } else {
+                    $content = trim(strip_tags($content, $allowedTags));
+                }
+                $entry->setContent($content);
+            }
+            $shortDescription = $resource->value('bibo:shortDescription');
+            if ($shortDescription) {
+                $entry->setDescription(strip_tags($shortDescription, $allowedTags));
+            }
+
+            $feed->addEntry($entry);
+        }
+    }
+
+    /**
+     * Fill each entry according to an AdvancedSearch search config.
+     *
+     * Requires module AdvancedSearch.
+     * @see \AdvancedSearch\Api\Representation\SearchConfigRepresentation
+     */
+    protected function appendEntriesSearchConfig(Feed $feed): void
+    {
+        $searchConfigId = (int) $this->params()->fromRoute('search_config_id');
+        if (!$searchConfigId) {
+            return;
+        }
+
+        $site = $this->currentSite();
+        $siteSettings = $this->siteSettings();
+        $siteSearchConfigs = $siteSettings->get('advancedsearch_configs', []);
+        if (!in_array($searchConfigId, $siteSearchConfigs)) {
+            return;
+        }
+
+        // Check if it is an item set redirection.
+        $itemSetId = (int) $this->params()->fromRoute('item-set-id');
+        if ($itemSetId) {
+            try {
+                $this->api()->read('item_sets', $itemSetId);
+            } catch (\Throwable $e) {
+                return;
+            }
+        }
+
+        /** @var \AdvancedSearch\Api\Representation\SearchConfigRepresentation $searchConfig */
+        $searchConfig = $this->api()->read('search_configs', $searchConfigId)->getContent();
+
+        $controllersToApi = [
+            'item' => 'items',
+            'resource' => 'resources',
+            'item-set' => 'item_sets',
+            'media' => 'media',
+            'annotation' => 'annotations',
+        ];
+        $controllerNames = [
+            'site_pages' => 'page',
+            'items' => 'item',
+            'item_sets' => 'item-set',
+            'media' => 'media',
+            'annotations' => 'annotation',
+        ];
+
+        $allowedTags = '<p><a><i><b><em><strong><br>';
+        $maxLength = (int) $siteSettings->get('feed_entry_length', 0);
+        $currentSiteSlug = $site->slug();
+
+        $controller = $this->params()->fromRoute('resource-type', 'item');
+        $mainResourceType = $controllersToApi[$controller] ?? 'items';
+
+        $formAdapter = $searchConfig->formAdapter();
+        $request = $this->params()->fromQuery();
+
+        $request = $formAdapter->cleanRequest($request);
+        $isEmptyRequest = $formAdapter->isEmptyRequest($request);
+        if ($isEmptyRequest) {
+            $defaultResults = $searchConfig->subSetting('request', 'default_results') ?: 'default';
+            switch ($defaultResults) {
+                case 'none':
+                    $defaultQuery = '';
+                    $defaultQueryPost = '';
+                    break;
+                case 'query':
+                    $defaultQuery = $searchConfig->subSetting('request', 'default_query') ?: '';
+                    $defaultQueryPost = $searchConfig->subSetting('request', 'default_query_post') ?: '';
+                    break;
+                case 'default':
+                default:
+                    $defaultQuery = '*';
+                    $defaultQueryPost = $searchConfig->subSetting('request', 'default_query_post') ?: '';
+                    break;
+            }
+            if ($defaultQuery === '' && $defaultQueryPost === '') {
+                return;
+            }
+            $parsedQuery = [];
+            if ($defaultQuery) {
+                parse_str($defaultQuery, $parsedQuery);
+            }
+            $parsedQueryPost = [];
+            if ($defaultQueryPost) {
+                parse_str($defaultQueryPost, $parsedQueryPost);
+            }
+            $request = $parsedQuery + $request + $parsedQueryPost;
+        }
+
+        /** @var \AdvancedSearch\Response $response */
+        $response = $formAdapter->toResponse($request, $site);
+        if (!$response->isSuccess()) {
+            return;
+        }
+
+        $resources = $response->getResources($mainResourceType);
+        foreach ($resources as $resource) {
+            $resourceName = $resource->resourceName();
+
+            $entry = $feed->createEntry();
+            $id = $controllerNames[$resourceName] . '-' . $resource->id();
+
+            $entry
+                ->setId($id)
+                ->setLink($resource->siteUrl($currentSiteSlug, true))
+                ->setDateCreated($resource->created())
+                ->setDateModified($resource->modified())
+                ->setTitle((string) $resource->displayTitle($id));
+
+            $content = strip_tags($resource->displayDescription(), $allowedTags);
+            if ($content) {
+                if ($maxLength) {
+                    $clean = trim(str_replace('  ', ' ', strip_tags($content)));
                     $content = mb_substr($clean, 0, $maxLength) . '…';
                 } else {
                     $content = trim(strip_tags($content, $allowedTags));
