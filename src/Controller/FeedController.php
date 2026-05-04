@@ -89,7 +89,7 @@ class FeedController extends AbstractActionController
         if (is_numeric($asset)) {
             try {
                 $asset = $this->api()->read('assets', ['id' => $asset])->getContent();
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 $asset = null;
             }
         }
