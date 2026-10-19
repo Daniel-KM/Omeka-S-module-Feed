@@ -48,13 +48,14 @@ from the root of Omeka:
 vendor/bin/phpunit -c modules/Feed/phpunit.xml --testdox
 ```
 
-* Server with php 8.2 or greater on an old server
+* Server with a recent version of php
 
-To support php 8.2 or greater on a server with an old php version, run this
-command first:
+The dependencies included in the zip are locked for php 8.1 and support php up
+to 8.4. With a more recent version of php, update them from the root of the
+module:
 
 ```sh
-composer update
+composer update --no-dev
 ```
 
 
