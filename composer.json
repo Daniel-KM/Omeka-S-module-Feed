@@ -27,12 +27,6 @@
     "require": {
         "laminas/laminas-feed": "^2.25"
     },
-    "provide": {
-        "laminas/laminas-escaper": "*",
-        "laminas/laminas-servicemanager": "*",
-        "laminas/laminas-stdlib": "*",
-        "psr/container": "*"
-    },
     "autoload": {
         "psr-4": {
             "Feed\\": "src/"
