@@ -1,13 +1,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Daniel Berthereau <Daniel.github@Berthereau.net>, 2020.
+# Daniel Berthereau <Daniel.fr@Berthereau.net>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-02 00:00+0000\n"
-"PO-Revision-Date: 2026-03-02 00:00+0000\n"
+"POT-Creation-Date: 2026-10-05 00:00+0000\n"
+"PO-Revision-Date: 2026-10-05 00:00+0000\n"
 "Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: data/scripts/upgrade.php:39 Module.php:55
+#: data/scripts/upgrade.php:40 Module.php:73
 #, php-format
 msgid "The module %1$s should be upgraded to version %2$s or later."
 msgstr "Le module %1$s doit être mis à niveau à la version %2$s ou ultérieure."
 
-#: data/scripts/upgrade.php:43
+#: data/scripts/upgrade.php:44 data/scripts/upgrade.php:59
 msgid "Missing requirement. Unable to upgrade."
 msgstr "Pré-requis absent. Impossible de mettre à jour."
 
@@ -30,19 +30,19 @@ msgstr "Pré-requis absent. Impossible de mettre à jour."
 msgid "Logo"
 msgstr "Logo"
 
-#: data/scripts/upgrade.php:48 Module.php:63
+#: data/scripts/upgrade.php:51 Module.php:83
 msgid "To use the module with php lower than {php}, use version {version}."
 msgstr ""
 "Pour utiliser le module avec un version php inférieure à {php}, utiliser la "
 "version {version}."
 
-#: data/scripts/upgrade.php:56
+#: data/scripts/upgrade.php:64
 msgid "It’s now possible to get automatic feeds from search results."
 msgstr ""
 "Il est désormais possible d’avoir des flux automatiques depuis les résultats "
 "de recherche."
 
-#: Module.php:74
+#: Module.php:98
 msgid ""
 "Links to automatic feeds from search results can be appended to item / "
 "browse and item sets / browse pages, with module BlocksDisposition or "
