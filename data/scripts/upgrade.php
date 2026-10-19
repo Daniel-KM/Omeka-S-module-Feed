@@ -22,7 +22,8 @@ use Common\Stdlib\PsrMessage;
  * @var \Omeka\Mvc\Controller\Plugin\Messenger $messenger
  */
 $plugins = $services->get('ControllerPluginManager');
-$url = $services->get('ViewHelperManager')->get('url');
+$helpers = $services->get('ViewHelperManager');
+$url = $helpers->get('url');
 $api = $plugins->get('api');
 $config = $services->get('Config');
 $logger = $services->get('Omeka\Logger');
