@@ -59,7 +59,7 @@ abstract class FeedControllerTestCase extends AbstractHttpControllerTestCase
      * Override dispatch to handle re-authentication after reset
      * and set server name for canonical URLs.
      */
-    public function dispatch($url, $method = null, $params = [], $isXmlHttpRequest = false)
+    public function dispatch($url, $method = null, $params = [], $isXmlHttpRequest = false): void
     {
         $this->reset();
         $this->getApplication();
